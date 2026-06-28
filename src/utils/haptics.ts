@@ -2,7 +2,13 @@ import { Platform } from 'react-native';
 
 type ImpactLevel = 'light' | 'medium' | 'heavy';
 
-let HapticsModule: { impactAsync: (style: any) => void; notificationAsync: (type: any) => void; selectionAsync: () => void; ImpactFeedbackStyle: any; NotificationFeedbackType: any } | null = null;
+let HapticsModule: {
+  impactAsync: (style: any) => void;
+  notificationAsync: (type: any) => void;
+  selectionAsync: () => void;
+  ImpactFeedbackStyle: any;
+  NotificationFeedbackType: any;
+} | null = null;
 
 try {
   // eslint-disable-next-line @typescript-eslint/no-require-imports

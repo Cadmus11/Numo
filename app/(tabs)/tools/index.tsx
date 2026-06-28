@@ -15,12 +15,54 @@ interface ToolEntry {
 }
 
 const TOOLS: ToolEntry[] = [
-  { key: 'name', title: 'Name Analysis Lab', subtitle: 'Expression, Soul Urge & Personality numbers', icon: 'A', color: '#8B5CF6', route: '/(tabs)/tools/name' },
-  { key: 'business', title: 'Business Numerology', subtitle: 'Company & product name analysis', icon: 'B', color: '#3B82F6', route: '/(tabs)/tools/business' },
-  { key: 'phone', title: 'Phone Numerology', subtitle: 'Mobile & landline energy analysis', icon: '#', color: '#10B981', route: '/(tabs)/tools/phone' },
-  { key: 'house', title: 'House Numerology', subtitle: 'Home & apartment number analysis', icon: 'H', color: '#F59E0B', route: '/(tabs)/tools/house' },
-  { key: 'baby', title: 'Baby Name Analyzer', subtitle: 'Find the perfect name for your baby', icon: 'B', color: '#EC4899', route: '/(tabs)/tools/baby' },
-  { key: 'knowledge', title: 'Knowledge Library', subtitle: 'Learn numerology, zodiac & interpretation guides', icon: '📚', color: '#8B5CF6', route: '/(tabs)/tools/knowledge' },
+  {
+    key: 'name',
+    title: 'Name Analysis Lab',
+    subtitle: 'Expression, Soul Urge & Personality numbers',
+    icon: 'A',
+    color: '#8B5CF6',
+    route: '/(tabs)/tools/name',
+  },
+  {
+    key: 'business',
+    title: 'Business Numerology',
+    subtitle: 'Company & product name analysis',
+    icon: 'B',
+    color: '#3B82F6',
+    route: '/(tabs)/tools/business',
+  },
+  {
+    key: 'phone',
+    title: 'Phone Numerology',
+    subtitle: 'Mobile & landline energy analysis',
+    icon: '#',
+    color: '#10B981',
+    route: '/(tabs)/tools/phone',
+  },
+  {
+    key: 'house',
+    title: 'House Numerology',
+    subtitle: 'Home & apartment number analysis',
+    icon: 'H',
+    color: '#F59E0B',
+    route: '/(tabs)/tools/house',
+  },
+  {
+    key: 'baby',
+    title: 'Baby Name Analyzer',
+    subtitle: 'Find the perfect name for your baby',
+    icon: 'B',
+    color: '#EC4899',
+    route: '/(tabs)/tools/baby',
+  },
+  {
+    key: 'knowledge',
+    title: 'Knowledge Library',
+    subtitle: 'Learn numerology, zodiac & interpretation guides',
+    icon: '📚',
+    color: '#8B5CF6',
+    route: '/(tabs)/tools/knowledge',
+  },
 ];
 
 export default function ToolsMenuScreen() {
@@ -28,8 +70,12 @@ export default function ToolsMenuScreen() {
   const { colors } = theme;
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: colors.background }} contentContainerStyle={{ padding: 16, paddingBottom: 40 }}>
-      <Text style={{ fontSize: 22, fontWeight: '700', color: colors.onSurface, marginBottom: 4 }}>Numerology Tools</Text>
+    <ScrollView
+      style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ padding: 16, paddingBottom: 40 }}>
+      <Text style={{ fontSize: 22, fontWeight: '700', color: colors.onSurface, marginBottom: 4 }}>
+        Numerology Tools
+      </Text>
       <Text style={{ fontSize: 14, color: colors.onSurfaceVariant, marginBottom: 20 }}>
         Specialized calculators for names, numbers, and more
       </Text>
@@ -43,7 +89,10 @@ export default function ToolsMenuScreen() {
 function ToolCard({ tool, colors }: { tool: ToolEntry; colors: MaterialColors }) {
   return (
     <TouchableOpacity
-      onPress={() => { impactAsync('light'); router.push(tool.route as any); }}
+      onPress={() => {
+        impactAsync('light');
+        router.push(tool.route as any);
+      }}
       accessibilityRole="button"
       accessibilityLabel={tool.title}
       style={{
@@ -53,8 +102,7 @@ function ToolCard({ tool, colors }: { tool: ToolEntry; colors: MaterialColors })
         borderRadius: 14,
         padding: 16,
         marginBottom: 12,
-      }}
-    >
+      }}>
       <View
         style={{
           width: 48,
@@ -64,13 +112,16 @@ function ToolCard({ tool, colors }: { tool: ToolEntry; colors: MaterialColors })
           justifyContent: 'center',
           alignItems: 'center',
           marginRight: 14,
-        }}
-      >
+        }}>
         <Text style={{ fontSize: 22, fontWeight: '800', color: tool.color }}>{tool.icon}</Text>
       </View>
       <View style={{ flex: 1 }}>
-        <Text style={{ fontSize: 16, fontWeight: '600', color: colors.onSurface }}>{tool.title}</Text>
-        <Text style={{ fontSize: 13, color: colors.onSurfaceVariant, marginTop: 2 }}>{tool.subtitle}</Text>
+        <Text style={{ fontSize: 16, fontWeight: '600', color: colors.onSurface }}>
+          {tool.title}
+        </Text>
+        <Text style={{ fontSize: 13, color: colors.onSurfaceVariant, marginTop: 2 }}>
+          {tool.subtitle}
+        </Text>
       </View>
       <Text style={{ fontSize: 18, color: colors.onSurfaceVariant }}>›</Text>
     </TouchableOpacity>

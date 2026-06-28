@@ -8,7 +8,11 @@ import { nameNumberMeanings } from 'src/data/nameNumberMeanings';
 import { karmicDebtMeanings, karmicLessonMeanings } from 'src/data/karmicMeanings';
 import { challengeMeanings } from 'src/data/challengeMeanings';
 import { pinnacleMeanings } from 'src/data/pinnacleMeanings';
-import { personalYearMeanings, personalMonthMeanings, personalDayMeanings } from 'src/data/cycleMeanings';
+import {
+  personalYearMeanings,
+  personalMonthMeanings,
+  personalDayMeanings,
+} from 'src/data/cycleMeanings';
 import { luckyElements } from 'src/data/luckyElements';
 import { zodiacAnimalMap } from 'src/data/zodiacData';
 
@@ -34,7 +38,11 @@ function formatDate(iso: string): string {
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
-function getNumMeaning(record: Record<number, { label?: string; title?: string; corePersonality?: string }> | undefined, num: number, field: 'label' | 'title' | 'corePersonality'): string {
+function getNumMeaning(
+  record: Record<number, { label?: string; title?: string; corePersonality?: string }> | undefined,
+  num: number,
+  field: 'label' | 'title' | 'corePersonality'
+): string {
   if (!record) return '';
   const entry = record[num as keyof typeof record] as any;
   if (!entry) return '';
@@ -172,7 +180,9 @@ export function generateReport(profile: Profile): ProfileReport {
       content: [
         `Animal: ${zodiac.animal}`,
         `Element: ${zodiac.element} (${zodiac.yinYang})`,
-        zodiac.allianceGroup ? `Alliance: ${zodiac.allianceGroup.title} — ${zodiac.allianceGroup.description}` : '',
+        zodiac.allianceGroup
+          ? `Alliance: ${zodiac.allianceGroup.title} — ${zodiac.allianceGroup.description}`
+          : '',
         zodiac.secretFriend ? `Secret Friend: ${zodiac.secretFriend}` : '',
         `About: ${zodiacAnimalMap[zodiac.animal]?.personality ?? ''}`,
       ].filter(Boolean),
@@ -193,7 +203,11 @@ export function generateReport(profile: Profile): ProfileReport {
 }
 
 function escapeHtml(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 export function generateReportHTML(report: ProfileReport): string {
@@ -213,7 +227,7 @@ export function generateReportHTML(report: ProfileReport): string {
           return `<p>${escapeHtml(trimmed)}</p>`;
         })
         .join('\n')}
-    </div>`,
+    </div>`
     )
     .join('\n');
 

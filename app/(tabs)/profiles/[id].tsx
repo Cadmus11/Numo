@@ -27,7 +27,10 @@ export default function ProfileDetailScreen() {
   const updateProfile = useProfileStore((s) => s.updateProfile);
   const [activeTab, setActiveTab] = useState<TabKey>('overview');
 
-  const birthDate = profile ? new Date(profile.dateOfBirth) : null;
+  const birthDate = useMemo(() => {
+    if (!profile) return null;
+    return new Date(profile.dateOfBirth);
+  }, [profile]);
 
   const report = useMemo(() => {
     if (!profile || !birthDate) return null;
@@ -40,7 +43,11 @@ export default function ProfileDetailScreen() {
         birthMonth: birthDate.getMonth() + 1,
         birthYear: birthDate.getFullYear(),
       },
-      { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() },
+      {
+        year: new Date().getFullYear(),
+        month: new Date().getMonth() + 1,
+        day: new Date().getDate(),
+      }
     );
   }, [profile, birthDate]);
 
@@ -51,7 +58,13 @@ export default function ProfileDetailScreen() {
 
   if (!profile) {
     return (
-      <View style={{ flex: 1, backgroundColor: colors.background, justifyContent: 'center', alignItems: 'center' }}>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: colors.background,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
         <Text style={{ color: colors.onSurface }}>Profile not found</Text>
       </View>
     );
@@ -60,9 +73,7 @@ export default function ProfileDetailScreen() {
   const initials = `${profile.firstName[0] ?? ''}${profile.lastName[0] ?? ''}`.toUpperCase();
   const fullName = `${profile.firstName} ${profile.lastName}`.trim();
   const age = birthDate
-    ? Math.floor(
-        (Date.now() - birthDate.getTime()) / (365.25 * 24 * 60 * 60 * 1000),
-      )
+    ? Math.floor((Date.now() - birthDate.getTime()) / (365.25 * 24 * 60 * 60 * 1000))
     : null;
 
   return (
@@ -76,18 +87,26 @@ export default function ProfileDetailScreen() {
           paddingVertical: 12,
           borderBottomWidth: 1,
           borderBottomColor: colors.outlineVariant,
-        }}
-      >
-        <TouchableOpacity onPress={() => router.back()} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+        }}>
+        <TouchableOpacity
+          onPress={() => router.back()}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
           <ArrowLeft size={24} color={colors.onSurface} />
         </TouchableOpacity>
-        <Text style={{ fontSize: 18, fontWeight: '700', color: colors.onSurface, flex: 1, textAlign: 'center' }} numberOfLines={1}>
+        <Text
+          style={{
+            fontSize: 18,
+            fontWeight: '700',
+            color: colors.onSurface,
+            flex: 1,
+            textAlign: 'center',
+          }}
+          numberOfLines={1}>
           {fullName}
         </Text>
         <View style={{ flexDirection: 'row', gap: 12 }}>
           <TouchableOpacity
-            onPress={() => updateProfile(profile.id, { favorite: !profile.favorite })}
-          >
+            onPress={() => updateProfile(profile.id, { favorite: !profile.favorite })}>
             <Heart
               size={22}
               color={profile.favorite ? colors.error : colors.onSurfaceVariant}
@@ -106,8 +125,7 @@ export default function ProfileDetailScreen() {
           paddingVertical: 20,
           borderBottomWidth: 1,
           borderBottomColor: colors.outlineVariant,
-        }}
-      >
+        }}>
         <View
           style={{
             width: 72,
@@ -117,27 +135,24 @@ export default function ProfileDetailScreen() {
             justifyContent: 'center',
             alignItems: 'center',
             marginBottom: 8,
-          }}
-        >
+          }}>
           <Text style={{ fontSize: 28, fontWeight: '700', color: colors.onPrimaryContainer }}>
             {initials}
           </Text>
         </View>
-        <Text style={{ fontSize: 18, fontWeight: '700', color: colors.onSurface }}>
-          {fullName}
-        </Text>
+        <Text style={{ fontSize: 18, fontWeight: '700', color: colors.onSurface }}>{fullName}</Text>
         {profile.nickname ? (
           <Text style={{ fontSize: 14, color: colors.onSurfaceVariant }}>
-            {'"'}{profile.nickname}{'"'}
+            {'"'}
+            {profile.nickname}
+            {'"'}
           </Text>
         ) : null}
         <View style={{ flexDirection: 'row', gap: 12, marginTop: 4 }}>
           <Text style={{ fontSize: 13, color: colors.onSurfaceVariant }}>
             {profile.dateOfBirth} {age ? `(${age} yrs)` : ''}
           </Text>
-          <Text style={{ fontSize: 13, color: colors.onSurfaceVariant }}>
-            {profile.type}
-          </Text>
+          <Text style={{ fontSize: 13, color: colors.onSurfaceVariant }}>{profile.type}</Text>
         </View>
       </View>
 
@@ -148,8 +163,7 @@ export default function ProfileDetailScreen() {
           paddingVertical: 8,
           borderBottomWidth: 1,
           borderBottomColor: colors.outlineVariant,
-        }}
-      >
+        }}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {TABS.map((tab) => (
             <TouchableOpacity
@@ -161,15 +175,13 @@ export default function ProfileDetailScreen() {
                 borderRadius: 20,
                 backgroundColor: activeTab === tab.key ? colors.primary : 'transparent',
                 marginRight: 6,
-              }}
-            >
+              }}>
               <Text
                 style={{
                   fontSize: 13,
                   fontWeight: '600',
                   color: activeTab === tab.key ? colors.onPrimary : colors.onSurfaceVariant,
-                }}
-              >
+                }}>
                 {tab.label}
               </Text>
             </TouchableOpacity>
@@ -177,34 +189,54 @@ export default function ProfileDetailScreen() {
         </ScrollView>
       </View>
 
-      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
+        showsVerticalScrollIndicator={false}>
         {activeTab === 'overview' && (
-          <OverviewTab report={report} zodiacProfile={zodiacProfile} colors={colors} profile={profile} />
+          <OverviewTab
+            report={report}
+            zodiacProfile={zodiacProfile}
+            colors={colors}
+            profile={profile}
+          />
         )}
-        {activeTab === 'numerology' && (
-          <NumerologyTab report={report} colors={colors} />
-        )}
-        {activeTab === 'zodiac' && (
-          <ZodiacTab zodiacProfile={zodiacProfile} colors={colors} />
-        )}
-        {activeTab === 'karmic' && (
-          <KarmicTab report={report} colors={colors} />
-        )}
-        {activeTab === 'cycles' && (
-          <CyclesTab report={report} colors={colors} />
-        )}
-        {activeTab === 'forecast' && (
-          <ForecastTab report={report} colors={colors} />
-        )}
+        {activeTab === 'numerology' && <NumerologyTab report={report} colors={colors} />}
+        {activeTab === 'zodiac' && <ZodiacTab zodiacProfile={zodiacProfile} colors={colors} />}
+        {activeTab === 'karmic' && <KarmicTab report={report} colors={colors} />}
+        {activeTab === 'cycles' && <CyclesTab report={report} colors={colors} />}
+        {activeTab === 'forecast' && <ForecastTab report={report} colors={colors} />}
       </ScrollView>
     </View>
   );
 }
 
-function InfoCard({ title, children, colors }: { title: string; children: React.ReactNode; colors: MaterialColors }) {
+function InfoCard({
+  title,
+  children,
+  colors,
+}: {
+  title: string;
+  children: React.ReactNode;
+  colors: MaterialColors;
+}) {
   return (
-    <View style={{ backgroundColor: colors.surfaceVariant, borderRadius: 12, padding: 14, marginBottom: 10 }}>
-      <Text style={{ fontSize: 13, fontWeight: '600', color: colors.onSurfaceVariant, marginBottom: 6, textTransform: 'uppercase', letterSpacing: 1 }}>
+    <View
+      style={{
+        backgroundColor: colors.surfaceVariant,
+        borderRadius: 12,
+        padding: 14,
+        marginBottom: 10,
+      }}>
+      <Text
+        style={{
+          fontSize: 13,
+          fontWeight: '600',
+          color: colors.onSurfaceVariant,
+          marginBottom: 6,
+          textTransform: 'uppercase',
+          letterSpacing: 1,
+        }}>
         {title}
       </Text>
       {children}
@@ -212,7 +244,15 @@ function InfoCard({ title, children, colors }: { title: string; children: React.
   );
 }
 
-function NumberRow({ label, value, colors }: { label: string; value: number | string | null; colors: MaterialColors }) {
+function NumberRow({
+  label,
+  value,
+  colors,
+}: {
+  label: string;
+  value: number | string | null;
+  colors: MaterialColors;
+}) {
   if (value === null || value === undefined) return null;
   return (
     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 4 }}>
@@ -232,17 +272,31 @@ function OverviewTab({ report, zodiacProfile, colors, profile }: any) {
       ) : null}
       {report && (
         <InfoCard title="Life Path" colors={colors}>
-          <Text style={{ fontSize: 32, fontWeight: '800', color: colors.primary, textAlign: 'center' }}>
+          <Text
+            style={{ fontSize: 32, fontWeight: '800', color: colors.primary, textAlign: 'center' }}>
             {report.lifePath}
           </Text>
-          <Text style={{ fontSize: 13, color: colors.onSurfaceVariant, textAlign: 'center', marginTop: 4 }}>
-            Expression {report.expression} · Soul Urge {report.soulUrge} · Personality {report.personality}
+          <Text
+            style={{
+              fontSize: 13,
+              color: colors.onSurfaceVariant,
+              textAlign: 'center',
+              marginTop: 4,
+            }}>
+            Expression {report.expression} · Soul Urge {report.soulUrge} · Personality{' '}
+            {report.personality}
           </Text>
         </InfoCard>
       )}
       {zodiacProfile && (
         <InfoCard title="Zodiac Sign" colors={colors}>
-          <Text style={{ fontSize: 20, fontWeight: '700', color: colors.onSurface, textAlign: 'center' }}>
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: '700',
+              color: colors.onSurface,
+              textAlign: 'center',
+            }}>
             {zodiacProfile.animal}
           </Text>
           <Text style={{ fontSize: 13, color: colors.onSurfaceVariant, textAlign: 'center' }}>
@@ -255,7 +309,8 @@ function OverviewTab({ report, zodiacProfile, colors, profile }: any) {
 }
 
 function NumerologyTab({ report, colors }: any) {
-  if (!report) return <Text style={{ color: colors.onSurfaceVariant }}>Unable to calculate numerology.</Text>;
+  if (!report)
+    return <Text style={{ color: colors.onSurfaceVariant }}>Unable to calculate numerology.</Text>;
   return (
     <View>
       <InfoCard title="Core Numbers" colors={colors}>
@@ -281,11 +336,17 @@ function NumerologyTab({ report, colors }: any) {
 }
 
 function ZodiacTab({ zodiacProfile, colors }: any) {
-  if (!zodiacProfile) return <Text style={{ color: colors.onSurfaceVariant }}>Unable to calculate zodiac profile.</Text>;
+  if (!zodiacProfile)
+    return (
+      <Text style={{ color: colors.onSurfaceVariant }}>Unable to calculate zodiac profile.</Text>
+    );
   return (
     <View>
       <InfoCard title="Animal Sign" colors={colors}>
-        <Text style={{ fontSize: 24, fontWeight: '800', color: colors.primary, textAlign: 'center' }}>{zodiacProfile.animal}</Text>
+        <Text
+          style={{ fontSize: 24, fontWeight: '800', color: colors.primary, textAlign: 'center' }}>
+          {zodiacProfile.animal}
+        </Text>
       </InfoCard>
       <InfoCard title="Element" colors={colors}>
         <NumberRow label="Fixed Element" value={zodiacProfile.element} colors={colors} />
@@ -306,7 +367,8 @@ function ZodiacTab({ zodiacProfile, colors }: any) {
 }
 
 function KarmicTab({ report, colors }: any) {
-  if (!report) return <Text style={{ color: colors.onSurfaceVariant }}>Unable to calculate karmic data.</Text>;
+  if (!report)
+    return <Text style={{ color: colors.onSurfaceVariant }}>Unable to calculate karmic data.</Text>;
   return (
     <View>
       <InfoCard title="Karmic Lessons" colors={colors}>
@@ -315,18 +377,24 @@ function KarmicTab({ report, colors }: any) {
             Missing numbers: {report.karmicLessons.join(', ')}
           </Text>
         ) : (
-          <Text style={{ fontSize: 14, color: colors.onSurface }}>All numbers 1–9 are present.</Text>
+          <Text style={{ fontSize: 14, color: colors.onSurface }}>
+            All numbers 1–9 are present.
+          </Text>
         )}
       </InfoCard>
       <InfoCard title="Karmic Debts" colors={colors}>
         {report.karmicDebts && report.karmicDebts.length > 0 ? (
           report.karmicDebts.map((debt: number) => (
-            <Text key={debt} style={{ fontSize: 14, fontWeight: '700', color: colors.error, marginBottom: 2 }}>
+            <Text
+              key={debt}
+              style={{ fontSize: 14, fontWeight: '700', color: colors.error, marginBottom: 2 }}>
               {debt}
             </Text>
           ))
         ) : (
-          <Text style={{ fontSize: 14, color: colors.onSurface }}>No karmic debt numbers detected.</Text>
+          <Text style={{ fontSize: 14, color: colors.onSurface }}>
+            No karmic debt numbers detected.
+          </Text>
         )}
       </InfoCard>
       <InfoCard title="Challenges" colors={colors}>
@@ -344,18 +412,43 @@ function KarmicTab({ report, colors }: any) {
 }
 
 function CyclesTab({ report, colors }: any) {
-  if (!report) return <Text style={{ color: colors.onSurfaceVariant }}>Unable to calculate cycles.</Text>;
+  if (!report)
+    return <Text style={{ color: colors.onSurfaceVariant }}>Unable to calculate cycles.</Text>;
   return (
     <View>
       <InfoCard title="Personal Cycles" colors={colors}>
-        <NumberRow label="Personal Year" value={report.personalCycles?.personalYear} colors={colors} />
-        <NumberRow label="Personal Month" value={report.personalCycles?.personalMonth} colors={colors} />
-        <NumberRow label="Personal Day" value={report.personalCycles?.personalDay} colors={colors} />
+        <NumberRow
+          label="Personal Year"
+          value={report.personalCycles?.personalYear}
+          colors={colors}
+        />
+        <NumberRow
+          label="Personal Month"
+          value={report.personalCycles?.personalMonth}
+          colors={colors}
+        />
+        <NumberRow
+          label="Personal Day"
+          value={report.personalCycles?.personalDay}
+          colors={colors}
+        />
       </InfoCard>
       <InfoCard title="Universal Cycles" colors={colors}>
-        <NumberRow label="Universal Year" value={report.universalCycles?.universalYear} colors={colors} />
-        <NumberRow label="Universal Month" value={report.universalCycles?.universalMonth} colors={colors} />
-        <NumberRow label="Universal Day" value={report.universalCycles?.universalDay} colors={colors} />
+        <NumberRow
+          label="Universal Year"
+          value={report.universalCycles?.universalYear}
+          colors={colors}
+        />
+        <NumberRow
+          label="Universal Month"
+          value={report.universalCycles?.universalMonth}
+          colors={colors}
+        />
+        <NumberRow
+          label="Universal Day"
+          value={report.universalCycles?.universalDay}
+          colors={colors}
+        />
       </InfoCard>
       <InfoCard title="Pinnacles" colors={colors}>
         {report.pinnacles?.map((p: any, i: number) => (
@@ -371,13 +464,26 @@ function CyclesTab({ report, colors }: any) {
 }
 
 function ForecastTab({ report, colors }: any) {
-  if (!report) return <Text style={{ color: colors.onSurfaceVariant }}>Unable to calculate forecast.</Text>;
+  if (!report)
+    return <Text style={{ color: colors.onSurfaceVariant }}>Unable to calculate forecast.</Text>;
   return (
     <View>
       <InfoCard title="Current Energy" colors={colors}>
-        <NumberRow label="Personal Year" value={report.personalCycles?.personalYear} colors={colors} />
-        <NumberRow label="Personal Month" value={report.personalCycles?.personalMonth} colors={colors} />
-        <NumberRow label="Personal Day" value={report.personalCycles?.personalDay} colors={colors} />
+        <NumberRow
+          label="Personal Year"
+          value={report.personalCycles?.personalYear}
+          colors={colors}
+        />
+        <NumberRow
+          label="Personal Month"
+          value={report.personalCycles?.personalMonth}
+          colors={colors}
+        />
+        <NumberRow
+          label="Personal Day"
+          value={report.personalCycles?.personalDay}
+          colors={colors}
+        />
       </InfoCard>
       <InfoCard title="Lucky Elements" colors={colors}>
         <Text style={{ fontSize: 14, color: colors.onSurface }}>

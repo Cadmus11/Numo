@@ -17,16 +17,16 @@ import { getLuckyInfo } from './lucky';
 
 export function calculateFullProfile(
   data: ProfileData,
-  currentDate?: { year: number; month: number; day: number },
+  currentDate?: { year: number; month: number; day: number }
 ): FullNumerologyReport {
-  const now = currentDate ?? (() => {
-    const d = new Date();
-    return { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() };
-  })();
+  const now =
+    currentDate ??
+    (() => {
+      const d = new Date();
+      return { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() };
+    })();
 
-  const fullName = [data.firstName, data.middleName, data.lastName]
-    .filter(Boolean)
-    .join(' ');
+  const fullName = [data.firstName, data.middleName, data.lastName].filter(Boolean).join(' ');
 
   const lifePath = getLifePathNumber(data.birthDay, data.birthMonth, data.birthYear);
   const dayOfBirth = getDayOfBirthNumber(data.birthDay);
@@ -42,13 +42,7 @@ export function calculateFullProfile(
   const subconsciousSelf = getSubconsciousSelfNumber(fullName);
 
   const karmicLessons = getKarmicLessons(fullName);
-  const karmicDebts = getKarmicDebts(
-    lifePath,
-    expression,
-    soulUrge,
-    personality,
-    dayOfBirth,
-  );
+  const karmicDebts = getKarmicDebts(lifePath, expression, soulUrge, personality, dayOfBirth);
 
   const challenges = getChallenges(data.birthDay, data.birthMonth, data.birthYear);
   const pinnacles = getPinnacles(data.birthDay, data.birthMonth, data.birthYear, lifePath);
@@ -58,7 +52,7 @@ export function calculateFullProfile(
     data.birthDay,
     now.year,
     now.month,
-    now.day,
+    now.day
   );
 
   const universalCycles = getUniversalCycles(now.year, now.month, now.day);

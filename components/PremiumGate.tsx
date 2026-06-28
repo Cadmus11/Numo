@@ -27,15 +27,34 @@ export function PremiumGate({ featureId, children, fallback }: PremiumGateProps)
   const feature = FEATURE_MAP[featureId];
 
   return (
-    <View style={{ backgroundColor: colors.surfaceVariant, borderRadius: 12, padding: 14, marginBottom: 8, alignItems: 'center' }}>
+    <View
+      style={{
+        backgroundColor: colors.surfaceVariant,
+        borderRadius: 12,
+        padding: 14,
+        marginBottom: 8,
+        alignItems: 'center',
+      }}>
       <Text style={{ fontSize: 24, marginBottom: 8 }}>{feature?.icon ?? '\uD83D\uDD12'}</Text>
       <Text style={{ fontSize: 15, fontWeight: '700', color: colors.onSurface, marginBottom: 4 }}>
         Premium Feature
       </Text>
-      <Text style={{ fontSize: 13, color: colors.onSurfaceVariant, textAlign: 'center', marginBottom: 8 }}>
+      <Text
+        style={{
+          fontSize: 13,
+          color: colors.onSurfaceVariant,
+          textAlign: 'center',
+          marginBottom: 8,
+        }}>
         {feature?.description ?? 'This feature is available in NUMO Pro.'}
       </Text>
-      <View style={{ paddingHorizontal: 12, paddingVertical: 4, borderRadius: 8, backgroundColor: colors.primary + '30' }}>
+      <View
+        style={{
+          paddingHorizontal: 12,
+          paddingVertical: 4,
+          borderRadius: 8,
+          backgroundColor: colors.primary + '30',
+        }}>
         <Text style={{ fontSize: 11, fontWeight: '700', color: colors.primary }}>NUMO PRO</Text>
       </View>
     </View>

@@ -9,7 +9,7 @@ export function getPinnacles(
   day: number,
   month: number,
   year: number,
-  lifePath: number,
+  lifePath: number
 ): PinnacleCycle[] {
   const reducedMonth = reduceNumber(month, false);
   const reducedDay = reduceNumber(day, false);
@@ -35,7 +35,7 @@ export function getPinnacles(
       ageEnd: thirdEnd,
       number: pinnacleNumber(
         pinnacleNumber(reducedMonth, reducedDay),
-        pinnacleNumber(reducedDay, reducedYear),
+        pinnacleNumber(reducedDay, reducedYear)
       ),
     },
     {

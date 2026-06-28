@@ -1,3 +1,4 @@
+import { reduceNumber } from './reduction';
 import type { LuckyInfo } from './types';
 
 const DAYS: Record<number, string[]> = {
@@ -49,7 +50,7 @@ const LUCKY_NUMBERS: Record<number, number[]> = {
 };
 
 export function getLuckyInfo(lifePath: number): LuckyInfo {
-  const path = lifePath > 9 ? lifePath : lifePath;
+  const path = lifePath > 9 ? reduceNumber(lifePath, false) : lifePath;
   return {
     numbers: LUCKY_NUMBERS[path] ?? LUCKY_NUMBERS[1]!,
     days: DAYS[path] ?? DAYS[1]!,

@@ -1,4 +1,12 @@
-export type ProfileType = 'Self' | 'Partner' | 'Friend' | 'Family Member' | 'Child' | 'Business Partner' | 'Client' | 'Custom';
+export type ProfileType =
+  | 'Self'
+  | 'Partner'
+  | 'Friend'
+  | 'Family Member'
+  | 'Child'
+  | 'Business Partner'
+  | 'Client'
+  | 'Custom';
 
 export interface Profile {
   id: string;

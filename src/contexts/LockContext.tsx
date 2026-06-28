@@ -56,7 +56,7 @@ export const LockProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setShowLockScreen,
       hasPin,
     }),
-    [isLocked, lockApp, unlockApp, showLockScreen, hasPin],
+    [isLocked, lockApp, unlockApp, showLockScreen, hasPin]
   );
 
   return <LockContext.Provider value={value}>{children}</LockContext.Provider>;

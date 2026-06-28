@@ -21,28 +21,25 @@ export function getCompatibility(
   personalityA: number,
   personalityB: number,
   expressionA: number,
-  expressionB: number,
+  expressionB: number
 ): CompatibilityScore {
-  const love =
-    Math.round(
-      relationScore(soulUrgeA, soulUrgeB) * 0.5 +
-        relationScore(lifePathA, lifePathB) * 0.3 +
-        relationScore(expressionA, expressionB) * 0.2,
-    );
+  const love = Math.round(
+    relationScore(soulUrgeA, soulUrgeB) * 0.5 +
+      relationScore(lifePathA, lifePathB) * 0.3 +
+      relationScore(expressionA, expressionB) * 0.2
+  );
 
-  const friendship =
-    Math.round(
-      relationScore(expressionA, expressionB) * 0.4 +
-        relationScore(lifePathA, lifePathB) * 0.3 +
-        relationScore(personalityA, personalityB) * 0.3,
-    );
+  const friendship = Math.round(
+    relationScore(expressionA, expressionB) * 0.4 +
+      relationScore(lifePathA, lifePathB) * 0.3 +
+      relationScore(personalityA, personalityB) * 0.3
+  );
 
-  const business =
-    Math.round(
-      relationScore(lifePathA, lifePathB) * 0.4 +
-        relationScore(expressionA, expressionB) * 0.3 +
-        relationScore(personalityA, personalityB) * 0.3,
-    );
+  const business = Math.round(
+    relationScore(lifePathA, lifePathB) * 0.4 +
+      relationScore(expressionA, expressionB) * 0.3 +
+      relationScore(personalityA, personalityB) * 0.3
+  );
 
   return {
     love: Math.min(100, Math.max(0, love)),

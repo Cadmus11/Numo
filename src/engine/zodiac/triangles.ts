@@ -10,22 +10,26 @@ const ALLIANCE_GROUPS: AllianceGroup[] = [
   {
     animals: [Animal.Rat, Animal.Dragon, Animal.Monkey],
     title: 'The Innovators',
-    description: 'Dynamic, ambitious, and resourceful — this group thrives on big ideas and mutual inspiration.',
+    description:
+      'Dynamic, ambitious, and resourceful — this group thrives on big ideas and mutual inspiration.',
   },
   {
     animals: [Animal.Ox, Animal.Snake, Animal.Rooster],
     title: 'The Achievers',
-    description: 'Hardworking, determined, and detail-oriented — this group builds lasting success through discipline.',
+    description:
+      'Hardworking, determined, and detail-oriented — this group builds lasting success through discipline.',
   },
   {
     animals: [Animal.Tiger, Animal.Horse, Animal.Dog],
     title: 'The Adventurers',
-    description: 'Passionate, loyal, and freedom-loving — this group is driven by ideals and authentic connection.',
+    description:
+      'Passionate, loyal, and freedom-loving — this group is driven by ideals and authentic connection.',
   },
   {
     animals: [Animal.Rabbit, Animal.Goat, Animal.Pig],
     title: 'The Creatives',
-    description: 'Artistic, gentle, and harmonious — this group excels in nurturing, beauty, and emotional depth.',
+    description:
+      'Artistic, gentle, and harmonious — this group excels in nurturing, beauty, and emotional depth.',
   },
 ];
 
@@ -48,21 +52,18 @@ export function getAllianceGroup(animal: Animal): AllianceGroup | undefined {
 
 export function areInSameTriangle(animalA: Animal, animalB: Animal): boolean {
   return ALLIANCE_GROUPS.some(
-    (group) => group.animals.includes(animalA) && group.animals.includes(animalB),
+    (group) => group.animals.includes(animalA) && group.animals.includes(animalB)
   );
 }
 
 export function getSecretFriend(animal: Animal): Animal | undefined {
-  const pair = SECRET_FRIENDS.find(
-    ([a, b]) => a === animal || b === animal,
-  );
+  const pair = SECRET_FRIENDS.find(([a, b]) => a === animal || b === animal);
   if (!pair) return undefined;
   return pair[0] === animal ? pair[1] : pair[0];
 }
 
 export function isSecretFriend(animalA: Animal, animalB: Animal): boolean {
   return SECRET_FRIENDS.some(
-    ([a, b]) =>
-      (a === animalA && b === animalB) || (a === animalB && b === animalA),
+    ([a, b]) => (a === animalA && b === animalB) || (a === animalB && b === animalA)
   );
 }

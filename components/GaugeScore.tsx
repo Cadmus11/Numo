@@ -1,10 +1,6 @@
 import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
-import Animated, {
-  useAnimatedProps,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+import Animated, { useAnimatedProps, useSharedValue, withTiming } from 'react-native-reanimated';
 import Svg, { Circle } from 'react-native-svg';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -38,7 +34,7 @@ export const GaugeScore: React.FC<GaugeScoreProps> = ({ score, label, color }) =
 
   useEffect(() => {
     progress.value = withTiming(score / 100, { duration: 1000 });
-  }, [score]);
+  }, [score, progress]);
 
   const animatedProps = useAnimatedProps(() => ({
     strokeDashoffset: CIRCUMFERENCE * (1 - progress.value),
@@ -71,14 +67,10 @@ export const GaugeScore: React.FC<GaugeScoreProps> = ({ score, label, color }) =
           />
         </Svg>
         <View style={{ position: 'absolute', alignItems: 'center' }}>
-          <Text style={{ fontSize: 22, fontWeight: '800', color: scoreColor }}>
-            {score}%
-          </Text>
+          <Text style={{ fontSize: 22, fontWeight: '800', color: scoreColor }}>{score}%</Text>
         </View>
       </View>
-      <Text style={{ fontSize: 13, fontWeight: '600', color: '#CCC', marginTop: 4 }}>
-        {label}
-      </Text>
+      <Text style={{ fontSize: 13, fontWeight: '600', color: '#CCC', marginTop: 4 }}>{label}</Text>
       <Text style={{ fontSize: 11, color: scoreColor, fontWeight: '500' }}>
         {getScoreLabel(score)}
       </Text>

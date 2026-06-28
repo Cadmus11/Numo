@@ -36,8 +36,17 @@ export default function KnowledgeListScreen() {
   }, [query, category]);
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: colors.background }} contentContainerStyle={{ padding: 16, paddingBottom: 40 }}>
-      <View style={{ backgroundColor: colors.surfaceVariant, borderRadius: 12, paddingHorizontal: 14, paddingVertical: 12, marginBottom: 14 }}>
+    <ScrollView
+      style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{ padding: 16, paddingBottom: 40 }}>
+      <View
+        style={{
+          backgroundColor: colors.surfaceVariant,
+          borderRadius: 12,
+          paddingHorizontal: 14,
+          paddingVertical: 12,
+          marginBottom: 14,
+        }}>
         <TextInput
           value={query}
           onChangeText={setQuery}
@@ -53,15 +62,22 @@ export default function KnowledgeListScreen() {
         {CATEGORIES.map((cat) => (
           <TouchableOpacity
             key={cat.key}
-            onPress={() => { setCategory(cat.key); setQuery(''); }}
+            onPress={() => {
+              setCategory(cat.key);
+              setQuery('');
+            }}
             style={{
               backgroundColor: category === cat.key ? colors.primary : colors.surfaceVariant,
               borderRadius: 10,
               paddingHorizontal: 12,
               paddingVertical: 6,
-            }}
-          >
-            <Text style={{ fontSize: 13, fontWeight: '600', color: category === cat.key ? colors.onPrimary : colors.onSurface }}>
+            }}>
+            <Text
+              style={{
+                fontSize: 13,
+                fontWeight: '600',
+                color: category === cat.key ? colors.onPrimary : colors.onSurface,
+              }}>
               {cat.label}
             </Text>
           </TouchableOpacity>
@@ -85,15 +101,41 @@ function ArticleCard({ article, colors }: { article: Article; colors: MaterialCo
         borderRadius: 12,
         padding: 14,
         marginBottom: 10,
-      }}
-    >
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 6 }}>
-        <Text style={{ fontSize: 15, fontWeight: '700', color: colors.onSurface, flex: 1 }}>{article.title}</Text>
-        <View style={{ backgroundColor: catColor + '20', borderRadius: 6, paddingHorizontal: 8, paddingVertical: 2, marginLeft: 8 }}>
-          <Text style={{ fontSize: 10, fontWeight: '700', color: catColor, textTransform: 'uppercase' }}>{article.category}</Text>
+      }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
+          marginBottom: 6,
+        }}>
+        <Text style={{ fontSize: 15, fontWeight: '700', color: colors.onSurface, flex: 1 }}>
+          {article.title}
+        </Text>
+        <View
+          style={{
+            backgroundColor: catColor + '20',
+            borderRadius: 6,
+            paddingHorizontal: 8,
+            paddingVertical: 2,
+            marginLeft: 8,
+          }}>
+          <Text
+            style={{
+              fontSize: 10,
+              fontWeight: '700',
+              color: catColor,
+              textTransform: 'uppercase',
+            }}>
+            {article.category}
+          </Text>
         </View>
       </View>
-      <Text style={{ fontSize: 13, color: colors.onSurfaceVariant, lineHeight: 18 }} numberOfLines={2}>{article.subtitle}</Text>
+      <Text
+        style={{ fontSize: 13, color: colors.onSurfaceVariant, lineHeight: 18 }}
+        numberOfLines={2}>
+        {article.subtitle}
+      </Text>
     </TouchableOpacity>
   );
 }

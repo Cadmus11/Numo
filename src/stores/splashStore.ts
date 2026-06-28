@@ -22,6 +22,6 @@ export const useSplashStore = create<SplashState>()(
     {
       name: STORAGE_KEYS.SPLASH_SEEN,
       storage: splashStorage,
-    },
-  ),
+    }
+  )
 );

@@ -14,8 +14,7 @@ export default function ToolsLayout() {
         headerTitleStyle: { fontWeight: '600' },
         headerShadowVisible: false,
         contentStyle: { backgroundColor: colors.background },
-      }}
-    >
+      }}>
       <Stack.Screen name="index" options={{ title: 'Tools' }} />
       <Stack.Screen name="name" options={{ title: 'Name Analysis' }} />
       <Stack.Screen name="business" options={{ title: 'Business Numerology' }} />

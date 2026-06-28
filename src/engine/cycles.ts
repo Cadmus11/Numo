@@ -21,7 +21,7 @@ export function getPersonalCycles(
   birthDay: number,
   currentYear: number,
   currentMonth: number,
-  currentDay: number,
+  currentDay: number
 ): PersonalCycles {
   const personalYear = getPersonalYear(birthMonth, birthDay, currentYear);
   const personalMonth = getPersonalMonth(personalYear, currentMonth);
@@ -44,7 +44,7 @@ export function getUniversalDay(universalMonth: number, currentDay: number): num
 export function getUniversalCycles(
   currentYear: number,
   currentMonth: number,
-  currentDay: number,
+  currentDay: number
 ): UniversalCycles {
   const universalYear = getUniversalYear(currentYear);
   const universalMonth = getUniversalMonth(universalYear, currentMonth);

@@ -30,7 +30,14 @@ export class ErrorBoundary extends Component<Props, State> {
       if (this.props.fallback) return this.props.fallback;
 
       return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24, backgroundColor: '#0F0B1D' }}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: 24,
+            backgroundColor: '#0F0B1D',
+          }}>
           <Text style={{ fontSize: 18, fontWeight: '700', color: '#F8FAFC', marginBottom: 8 }}>
             Something went wrong
           </Text>
@@ -39,10 +46,14 @@ export class ErrorBoundary extends Component<Props, State> {
           </Text>
           <TouchableOpacity
             onPress={this.handleRetry}
-            style={{ backgroundColor: '#8B5CF6', borderRadius: 10, paddingHorizontal: 20, paddingVertical: 10 }}
+            style={{
+              backgroundColor: '#8B5CF6',
+              borderRadius: 10,
+              paddingHorizontal: 20,
+              paddingVertical: 10,
+            }}
             accessibilityRole="button"
-            accessibilityLabel="Try again"
-          >
+            accessibilityLabel="Try again">
             <Text style={{ fontSize: 14, fontWeight: '600', color: '#FFFFFF' }}>Try Again</Text>
           </TouchableOpacity>
         </View>

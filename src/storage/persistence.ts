@@ -11,11 +11,16 @@ if (Platform.OS === 'web') {
   const map = new Map<string, string>();
   storage = {
     getString: (key: string) => map.get(key),
-    set: (key: string, value: string) => { map.set(key, value); },
-    delete: (key: string) => { map.delete(key); },
+    set: (key: string, value: string) => {
+      map.set(key, value);
+    },
+    delete: (key: string) => {
+      map.delete(key);
+    },
     getAllKeys: () => Array.from(map.keys()),
   };
 } else {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { MMKV } = require('react-native-mmkv');
   const mmkv = new MMKV({ id: 'numo-storage' });
   storage = mmkv;

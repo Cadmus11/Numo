@@ -60,7 +60,7 @@ export const FEATURES: FeatureFlag[] = [
 ];
 
 export const FEATURE_MAP: Record<FeatureId, FeatureFlag> = Object.fromEntries(
-  FEATURES.map((f) => [f.id, f]),
+  FEATURES.map((f) => [f.id, f])
 ) as any;
 
 export function isPremiumFeature(id: FeatureId): boolean {

@@ -1,7 +1,7 @@
 import type { FullNumerologyReport, CompatibilityScore } from './types';
 import { getCompatibility } from './compatibility';
 import { getAnimal } from './zodiac/animals';
-import { getZodiacCompatibilityScore , CompatibilityRating } from './zodiac/compatibility';
+import { getZodiacCompatibilityScore, CompatibilityRating } from './zodiac/compatibility';
 import { isDirectEnemy } from './zodiac/enemySigns';
 import { areInSameTriangle, isSecretFriend } from './zodiac/triangles';
 
@@ -41,11 +41,14 @@ function getOverallRating(score: number): string {
 }
 
 function getOverallDescription(score: number): string {
-  if (score >= 85) return 'An exceptionally harmonious connection with strong potential across all areas of life.';
+  if (score >= 85)
+    return 'An exceptionally harmonious connection with strong potential across all areas of life.';
   if (score >= 70) return 'A strong, balanced connection with more strengths than challenges.';
-  if (score >= 55) return 'A solid foundation with good potential, though some areas may need attention.';
+  if (score >= 55)
+    return 'A solid foundation with good potential, though some areas may need attention.';
   if (score >= 40) return 'A mixed connection with both promising and challenging aspects.';
-  if (score >= 25) return 'Significant differences that will require conscious effort and understanding.';
+  if (score >= 25)
+    return 'Significant differences that will require conscious effort and understanding.';
   return 'A challenging dynamic that may require substantial compromise and growth work.';
 }
 
@@ -53,7 +56,7 @@ export function compareProfiles(
   reportA: FullNumerologyReport,
   reportB: FullNumerologyReport,
   birthYearA: number,
-  birthYearB: number,
+  birthYearB: number
 ): CombinedCompatibility {
   const numCompat = getCompatibility(
     reportA.lifePath,
@@ -63,7 +66,7 @@ export function compareProfiles(
     reportA.personality,
     reportB.personality,
     reportA.expression,
-    reportB.expression,
+    reportB.expression
   );
 
   const animalA = getAnimal(birthYearA);
@@ -96,47 +99,72 @@ export function compareProfiles(
   const conflicts: string[] = [];
   const recommendations: string[] = [];
 
-  if (love >= 70) strengths.push('Strong emotional and romantic connection — you naturally understand each other\'s needs.');
-  else if (love < 40) conflicts.push('Romantic chemistry may require extra nurturing and understanding.');
+  if (love >= 70)
+    strengths.push(
+      "Strong emotional and romantic connection — you naturally understand each other's needs."
+    );
+  else if (love < 40)
+    conflicts.push('Romantic chemistry may require extra nurturing and understanding.');
 
-  if (friendship >= 70) strengths.push('Natural friendship compatibility — you enjoy similar social rhythms.');
-  else if (friendship < 40) conflicts.push('Different social styles may create misunderstandings in friendship.');
+  if (friendship >= 70)
+    strengths.push('Natural friendship compatibility — you enjoy similar social rhythms.');
+  else if (friendship < 40)
+    conflicts.push('Different social styles may create misunderstandings in friendship.');
 
   if (business >= 70) strengths.push('Excellent collaborative energy — you make a strong team.');
-  else if (business < 40) conflicts.push('Working styles differ significantly and may require clear boundaries.');
+  else if (business < 40)
+    conflicts.push('Working styles differ significantly and may require clear boundaries.');
 
   if (secretFriends) {
-    strengths.push('Secret Friends in the zodiac — a hidden bond that brings unexpected harmony and support.');
+    strengths.push(
+      'Secret Friends in the zodiac — a hidden bond that brings unexpected harmony and support.'
+    );
   }
 
   if (triangle) {
-    strengths.push('You belong to the same zodiac alliance triangle, sharing core values and life approaches.');
+    strengths.push(
+      'You belong to the same zodiac alliance triangle, sharing core values and life approaches.'
+    );
   }
 
   if (enemyInfo) {
-    conflicts.push(`Direct zodiac enemy signs — ${animalA} and ${animalB} have opposing energies that require conscious effort.`);
+    conflicts.push(
+      `Direct zodiac enemy signs — ${animalA} and ${animalB} have opposing energies that require conscious effort.`
+    );
     recommendations.push(enemyInfo.growthAdvice);
   }
 
   if (reportA.lifePath === reportB.lifePath) {
-    strengths.push(`Shared Life Path number ${reportA.lifePath} — you have deep karmic alignment and similar life purposes.`);
+    strengths.push(
+      `Shared Life Path number ${reportA.lifePath} — you have deep karmic alignment and similar life purposes.`
+    );
   }
 
   if (reportA.expression === reportB.expression) {
-    strengths.push(`Shared Expression number ${reportA.expression} — you express yourselves in harmonizing ways.`);
+    strengths.push(
+      `Shared Expression number ${reportA.expression} — you express yourselves in harmonizing ways.`
+    );
   }
 
   const lpDiff = Math.abs(reportA.lifePath - reportB.lifePath);
   if (lpDiff === 5) {
-    conflicts.push('Life Path numbers differ by 5 — you may have fundamentally different approaches to life.');
-    recommendations.push('Celebrate your differences as complementary strengths rather than obstacles.');
+    conflicts.push(
+      'Life Path numbers differ by 5 — you may have fundamentally different approaches to life.'
+    );
+    recommendations.push(
+      'Celebrate your differences as complementary strengths rather than obstacles.'
+    );
   }
 
   if (reportA.soulUrge !== reportB.soulUrge) {
-    recommendations.push('Explore each other\'s Soul Urge numbers to understand deeper emotional motivations.');
+    recommendations.push(
+      "Explore each other's Soul Urge numbers to understand deeper emotional motivations."
+    );
   }
 
-  recommendations.push('Open communication about your different numerological strengths will deepen your connection.');
+  recommendations.push(
+    'Open communication about your different numerological strengths will deepen your connection.'
+  );
 
   return {
     numerology: numCompat,

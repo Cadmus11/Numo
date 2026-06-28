@@ -43,7 +43,7 @@ export const useProfileStore = create<ProfileState>()(
       updateProfile: (id, updates) => {
         set((state) => ({
           profiles: state.profiles.map((p) =>
-            p.id === id ? { ...p, ...updates, updatedAt: Date.now() } : p,
+            p.id === id ? { ...p, ...updates, updatedAt: Date.now() } : p
           ),
         }));
       },
@@ -73,7 +73,7 @@ export const useProfileStore = create<ProfileState>()(
             p.firstName.toLowerCase().includes(lower) ||
             p.lastName.toLowerCase().includes(lower) ||
             p.nickname.toLowerCase().includes(lower) ||
-            p.notes.toLowerCase().includes(lower),
+            p.notes.toLowerCase().includes(lower)
         );
       },
 
@@ -86,13 +86,17 @@ export const useProfileStore = create<ProfileState>()(
       },
 
       getGroups: () => {
-        const groups = new Set(get().profiles.map((p) => p.group).filter(Boolean));
+        const groups = new Set(
+          get()
+            .profiles.map((p) => p.group)
+            .filter(Boolean)
+        );
         return [...groups];
       },
     }),
     {
       name: '@numo/profiles',
       storage: profilesStorage,
-    },
-  ),
+    }
+  )
 );

@@ -26,9 +26,21 @@ export interface Triangle {
   cooperationPotential: string;
 }
 
-const compatibilityMatrix: Record<string, Record<string, { love: CompatibilityRating; friendship: CompatibilityRating; business: CompatibilityRating }>> = {};
+const compatibilityMatrix: Record<
+  string,
+  Record<
+    string,
+    { love: CompatibilityRating; friendship: CompatibilityRating; business: CompatibilityRating }
+  >
+> = {};
 
-function setRating(a: Animal, b: Animal, love: CompatibilityRating, friendship: CompatibilityRating, business: CompatibilityRating) {
+function setRating(
+  a: Animal,
+  b: Animal,
+  love: CompatibilityRating,
+  friendship: CompatibilityRating,
+  business: CompatibilityRating
+) {
   if (!compatibilityMatrix[a]) compatibilityMatrix[a] = {};
   if (!compatibilityMatrix[b]) compatibilityMatrix[b] = {};
   compatibilityMatrix[a][b] = { love, friendship, business };
@@ -116,68 +128,116 @@ export const enemySigns: EnemySign[] = [
   {
     animal1: 'Rat',
     animal2: 'Horse',
-    conflictAreas: ['Opposite energy rhythms — Rat is nocturnal, Horse is diurnal', 'Different approaches to spending and saving', 'Communication styles clash — Rat is subtle, Horse is direct'],
+    conflictAreas: [
+      'Opposite energy rhythms — Rat is nocturnal, Horse is diurnal',
+      'Different approaches to spending and saving',
+      'Communication styles clash — Rat is subtle, Horse is direct',
+    ],
     relationshipAdvice: [
       'Find a middle ground between planning and spontaneity',
       'Learn to appreciate each others different rhythms',
       'Communicate needs clearly without manipulation or bluntness',
     ],
-    growthOpportunities: ['Learning to balance caution with adventure', 'Developing patience with opposing viewpoints', 'Finding harmony in complementary differences'],
+    growthOpportunities: [
+      'Learning to balance caution with adventure',
+      'Developing patience with opposing viewpoints',
+      'Finding harmony in complementary differences',
+    ],
   },
   {
     animal1: 'Ox',
     animal2: 'Goat',
-    conflictAreas: ['Ox is methodical, Goat is spontaneous', 'Different values — Ox values work, Goat values pleasure', 'Communication breakdown due to different temperaments'],
+    conflictAreas: [
+      'Ox is methodical, Goat is spontaneous',
+      'Different values — Ox values work, Goat values pleasure',
+      'Communication breakdown due to different temperaments',
+    ],
     relationshipAdvice: [
       'Respect each others different approaches to life',
       'Find activities that balance work and pleasure',
       'Practice patience and avoid forcing conformity',
     ],
-    growthOpportunities: ['Learning flexibility from Goat', 'Learning discipline from Ox', 'Creating balance between work and leisure'],
+    growthOpportunities: [
+      'Learning flexibility from Goat',
+      'Learning discipline from Ox',
+      'Creating balance between work and leisure',
+    ],
   },
   {
     animal1: 'Tiger',
     animal2: 'Monkey',
-    conflictAreas: ['Both want to be the leader', 'Tiger is direct, Monkey is subtle', 'Competitive energy creates power struggles'],
+    conflictAreas: [
+      'Both want to be the leader',
+      'Tiger is direct, Monkey is subtle',
+      'Competitive energy creates power struggles',
+    ],
     relationshipAdvice: [
       'Establish clear roles and respect boundaries',
       'Channel competitive energy toward shared goals',
       'Learn to take turns leading and following',
     ],
-    growthOpportunities: ['Learning to share the spotlight', 'Developing mutual respect for different strengths', 'Building partnership through healthy competition'],
+    growthOpportunities: [
+      'Learning to share the spotlight',
+      'Developing mutual respect for different strengths',
+      'Building partnership through healthy competition',
+    ],
   },
   {
     animal1: 'Rabbit',
     animal2: 'Rooster',
-    conflictAreas: ['Rabbit values peace, Rooster values truth', 'Different social styles — Rabbit is reserved, Rooster is bold', 'Conflict over attention and recognition'],
+    conflictAreas: [
+      'Rabbit values peace, Rooster values truth',
+      'Different social styles — Rabbit is reserved, Rooster is bold',
+      'Conflict over attention and recognition',
+    ],
     relationshipAdvice: [
       'Balance honesty with diplomacy',
       'Appreciate each others different social gifts',
       'Learn that truth can be delivered gently',
     ],
-    growthOpportunities: ['Learning tact from Rabbit', 'Learning honesty from Rooster', 'Finding the middle path between peace and truth'],
+    growthOpportunities: [
+      'Learning tact from Rabbit',
+      'Learning honesty from Rooster',
+      'Finding the middle path between peace and truth',
+    ],
   },
   {
     animal1: 'Dragon',
     animal2: 'Dog',
-    conflictAreas: ['Dragon is idealistic, Dog is practical', 'Different approaches to risk', 'Dragon wants admiration, Dog wants loyalty'],
+    conflictAreas: [
+      'Dragon is idealistic, Dog is practical',
+      'Different approaches to risk',
+      'Dragon wants admiration, Dog wants loyalty',
+    ],
     relationshipAdvice: [
       'Ground Dragon visions with Dog practicality',
       'Appreciate different forms of devotion',
       'Find projects that combine vision with integrity',
     ],
-    growthOpportunities: ['Learning practicality from Dog', 'Learning vision from Dragon', 'Building something both meaningful and grounded'],
+    growthOpportunities: [
+      'Learning practicality from Dog',
+      'Learning vision from Dragon',
+      'Building something both meaningful and grounded',
+    ],
   },
   {
     animal1: 'Snake',
     animal2: 'Pig',
-    conflictAreas: ['Snake is private, Pig is open', 'Different communication styles', 'Trust issues due to different levels of transparency'],
+    conflictAreas: [
+      'Snake is private, Pig is open',
+      'Different communication styles',
+      'Trust issues due to different levels of transparency',
+    ],
     relationshipAdvice: [
       'Respect different needs for privacy',
       'Practice gentle, honest communication',
       'Build trust gradually through consistency',
     ],
-    growthOpportunities: ['Learning openness from Pig', 'Learning discretion from Snake', 'Finding balance between privacy and transparency'],
+    growthOpportunities: [
+      'Learning openness from Pig',
+      'Learning discretion from Snake',
+      'Finding balance between privacy and transparency',
+    ],
   },
 ];
 
@@ -185,30 +245,45 @@ export const zodiacTriangles: Triangle[] = [
   {
     name: 'Group 1: The Innovators',
     animals: ['Rat', 'Dragon', 'Monkey'],
-    description: 'This alliance brings together the Rat\'s intelligence, the Dragon\'s vision, and the Monkey\'s creativity. Together, they are unstoppable innovators who can turn any idea into reality.',
-    cooperationPotential: 'Excellent — these three naturally complement each other and share a love for achievement and intellectual stimulation.',
+    description:
+      "This alliance brings together the Rat's intelligence, the Dragon's vision, and the Monkey's creativity. Together, they are unstoppable innovators who can turn any idea into reality.",
+    cooperationPotential:
+      'Excellent — these three naturally complement each other and share a love for achievement and intellectual stimulation.',
   },
   {
     name: 'Group 2: The Builders',
     animals: ['Ox', 'Snake', 'Rooster'],
-    description: 'This group combines the Ox\'s diligence, the Snake\'s wisdom, and the Rooster\'s precision. They are natural builders who create lasting structures through methodical effort.',
-    cooperationPotential: 'Excellent — their shared dedication to quality and attention to detail makes them highly effective as a team.',
+    description:
+      "This group combines the Ox's diligence, the Snake's wisdom, and the Rooster's precision. They are natural builders who create lasting structures through methodical effort.",
+    cooperationPotential:
+      'Excellent — their shared dedication to quality and attention to detail makes them highly effective as a team.',
   },
   {
     name: 'Group 3: The Adventurers',
     animals: ['Tiger', 'Horse', 'Dog'],
-    description: 'This alliance unites the Tiger\'s courage, the Horse\'s energy, and the Dog\'s loyalty. They are natural protectors and adventurers who thrive on action and purpose.',
-    cooperationPotential: 'Excellent — their shared passion, loyalty, and love for freedom create powerful synergy.',
+    description:
+      "This alliance unites the Tiger's courage, the Horse's energy, and the Dog's loyalty. They are natural protectors and adventurers who thrive on action and purpose.",
+    cooperationPotential:
+      'Excellent — their shared passion, loyalty, and love for freedom create powerful synergy.',
   },
   {
     name: 'Group 4: The Creatives',
     animals: ['Rabbit', 'Goat', 'Pig'],
-    description: 'This group brings together the Rabbit\'s grace, the Goat\'s creativity, and the Pig\'s generosity. They are naturally artistic, kind, and community-oriented.',
-    cooperationPotential: 'Excellent — their shared appreciation for beauty, harmony, and compassion makes them a supportive and creative team.',
+    description:
+      "This group brings together the Rabbit's grace, the Goat's creativity, and the Pig's generosity. They are naturally artistic, kind, and community-oriented.",
+    cooperationPotential:
+      'Excellent — their shared appreciation for beauty, harmony, and compassion makes them a supportive and creative team.',
   },
 ];
 
-export function getCompatibility(animal1: Animal, animal2: Animal): { love: CompatibilityRating; friendship: CompatibilityRating; business: CompatibilityRating } | null {
+export function getCompatibility(
+  animal1: Animal,
+  animal2: Animal
+): {
+  love: CompatibilityRating;
+  friendship: CompatibilityRating;
+  business: CompatibilityRating;
+} | null {
   if (animal1 === animal2) return { love: 'Good', friendship: 'Excellent', business: 'Good' };
   return compatibilityMatrix[animal1]?.[animal2] ?? null;
 }
@@ -243,9 +318,13 @@ export function scoreToRating(score: number): CompatibilityRating {
 
 export function ratingToScore(rating: CompatibilityRating): number {
   switch (rating) {
-    case 'Excellent': return 90;
-    case 'Good': return 70;
-    case 'Moderate': return 50;
-    case 'Challenging': return 30;
+    case 'Excellent':
+      return 90;
+    case 'Good':
+      return 70;
+    case 'Moderate':
+      return 50;
+    case 'Challenging':
+      return 30;
   }
 }

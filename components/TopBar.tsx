@@ -21,17 +21,21 @@ export const TopBar: React.FC = () => {
           backgroundColor: colors.surface,
           borderBottomWidth: 1,
           borderBottomColor: colors.outlineVariant,
-        }}
-      >
-        <TouchableOpacity onPress={() => setSidebarVisible(true)} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+        }}>
+        <TouchableOpacity
+          onPress={() => setSidebarVisible(true)}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
           <HambergerMenu size={24} color={colors.onSurface} />
         </TouchableOpacity>
 
-        <Text style={{ fontSize: 18, fontWeight: '700', color: colors.onSurface, letterSpacing: 2 }}>
+        <Text
+          style={{ fontSize: 18, fontWeight: '700', color: colors.onSurface, letterSpacing: 2 }}>
           NUMO
         </Text>
 
-        <TouchableOpacity onPress={() => router.push('/settings')} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+        <TouchableOpacity
+          onPress={() => router.push('/settings')}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
           <Setting2 size={24} color={colors.onSurface} />
         </TouchableOpacity>
       </View>

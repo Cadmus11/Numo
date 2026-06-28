@@ -1,4 +1,3 @@
-import { reduceNumber } from './reduction';
 import { nameToNumbers } from './pythagorean';
 
 const DEBT_NUMBERS = new Set([13, 14, 16, 19]);
@@ -41,7 +40,7 @@ export function getKarmicDebts(
   expression: number,
   soulUrge: number,
   personality: number,
-  dayOfBirth: number,
+  dayOfBirth: number
 ): number[] {
   const sourceNumbers = [lifePath, expression, soulUrge, personality, dayOfBirth];
   return getKarmicDebtsFromNumbers(sourceNumbers);

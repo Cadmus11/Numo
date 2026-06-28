@@ -95,7 +95,8 @@ export const karmicLessonMeanings: Record<number, KarmicLessonMeaning> = {
   1: {
     missingNumber: 1,
     title: 'Missing 1 — Independence',
-    challenge: 'You struggle with asserting yourself and taking initiative. You may depend too heavily on others for direction and validation.',
+    challenge:
+      'You struggle with asserting yourself and taking initiative. You may depend too heavily on others for direction and validation.',
     growthArea: 'Developing self-confidence, independence, and the courage to lead your own life.',
     developmentPath: [
       'Practice making decisions without consulting others',
@@ -107,7 +108,8 @@ export const karmicLessonMeanings: Record<number, KarmicLessonMeaning> = {
   2: {
     missingNumber: 2,
     title: 'Missing 2 — Cooperation',
-    challenge: 'You may struggle with patience, diplomacy, and working harmoniously with others. Relationships and partnerships can feel challenging.',
+    challenge:
+      'You may struggle with patience, diplomacy, and working harmoniously with others. Relationships and partnerships can feel challenging.',
     growthArea: 'Learning the art of cooperation, patience, and emotional sensitivity.',
     developmentPath: [
       'Practice active listening without interrupting',
@@ -119,7 +121,8 @@ export const karmicLessonMeanings: Record<number, KarmicLessonMeaning> = {
   3: {
     missingNumber: 3,
     title: 'Missing 3 — Self-Expression',
-    challenge: 'You may find it difficult to express your creativity, emotions, or thoughts openly. Social interaction might feel awkward or forced.',
+    challenge:
+      'You may find it difficult to express your creativity, emotions, or thoughts openly. Social interaction might feel awkward or forced.',
     growthArea: 'Developing creative self-expression and comfortable social communication.',
     developmentPath: [
       'Start a creative practice (writing, drawing, music)',
@@ -131,7 +134,8 @@ export const karmicLessonMeanings: Record<number, KarmicLessonMeaning> = {
   4: {
     missingNumber: 4,
     title: 'Missing 4 — Discipline & Order',
-    challenge: 'You may struggle with organization, discipline, and following through on commitments. Life can feel chaotic or unstructured.',
+    challenge:
+      'You may struggle with organization, discipline, and following through on commitments. Life can feel chaotic or unstructured.',
     growthArea: 'Building practical skills of organization, discipline, and reliability.',
     developmentPath: [
       'Create and maintain daily routines',
@@ -143,7 +147,8 @@ export const karmicLessonMeanings: Record<number, KarmicLessonMeaning> = {
   5: {
     missingNumber: 5,
     title: 'Missing 5 — Freedom & Adaptability',
-    challenge: 'You may be overly rigid or fearful of change. Taking risks and embracing new experiences can feel threatening.',
+    challenge:
+      'You may be overly rigid or fearful of change. Taking risks and embracing new experiences can feel threatening.',
     growthArea: 'Learning to embrace change, take healthy risks, and develop adaptability.',
     developmentPath: [
       'Step out of your comfort zone regularly',
@@ -155,8 +160,10 @@ export const karmicLessonMeanings: Record<number, KarmicLessonMeaning> = {
   6: {
     missingNumber: 6,
     title: 'Missing 6 — Responsibility & Service',
-    challenge: 'You may avoid responsibility, struggle with commitment, or resist the demands of relationships and family.',
-    growthArea: 'Learning to embrace responsibility, service to others, and committed relationships.',
+    challenge:
+      'You may avoid responsibility, struggle with commitment, or resist the demands of relationships and family.',
+    growthArea:
+      'Learning to embrace responsibility, service to others, and committed relationships.',
     developmentPath: [
       'Take on responsibilities that serve others',
       'Practice being reliable and following through',
@@ -167,8 +174,10 @@ export const karmicLessonMeanings: Record<number, KarmicLessonMeaning> = {
   7: {
     missingNumber: 7,
     title: 'Missing 7 — Trust & Inner Wisdom',
-    challenge: 'You may distrust your intuition, avoid solitude, or rely too heavily on external validation and facts.',
-    growthArea: 'Developing trust in your inner wisdom and comfort with solitude and introspection.',
+    challenge:
+      'You may distrust your intuition, avoid solitude, or rely too heavily on external validation and facts.',
+    growthArea:
+      'Developing trust in your inner wisdom and comfort with solitude and introspection.',
     developmentPath: [
       'Spend time alone in reflection and meditation',
       'Learn to trust your gut feelings',
@@ -179,8 +188,10 @@ export const karmicLessonMeanings: Record<number, KarmicLessonMeaning> = {
   8: {
     missingNumber: 8,
     title: 'Missing 8 — Power & Abundance',
-    challenge: 'You may struggle with money, power dynamics, or asserting your authority. You might undervalue your worth.',
-    growthArea: 'Learning to handle power responsibly and develop a healthy relationship with money and authority.',
+    challenge:
+      'You may struggle with money, power dynamics, or asserting your authority. You might undervalue your worth.',
+    growthArea:
+      'Learning to handle power responsibly and develop a healthy relationship with money and authority.',
     developmentPath: [
       'Develop financial literacy and responsibility',
       'Practice asserting your needs and boundaries',
@@ -191,7 +202,8 @@ export const karmicLessonMeanings: Record<number, KarmicLessonMeaning> = {
   9: {
     missingNumber: 9,
     title: 'Missing 9 — Compassion & Letting Go',
-    challenge: 'You may struggle with letting go, holding grudges, or lacking broader perspective and compassion.',
+    challenge:
+      'You may struggle with letting go, holding grudges, or lacking broader perspective and compassion.',
     growthArea: 'Developing universal compassion, the ability to forgive, and a broader worldview.',
     developmentPath: [
       'Practice forgiveness, especially for past hurts',

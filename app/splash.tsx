@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Animated, View, Text } from 'react-native';
+import { Animated, Text } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSplashStore } from 'src/stores/splashStore';
 
@@ -49,17 +49,26 @@ export default function SplashScreen() {
       markSplashSeen();
       router.replace('/(tabs)');
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <Animated.View style={{ flex: 1, backgroundColor: '#0F0B1D', alignItems: 'center', justifyContent: 'center', opacity: containerOpacity }}>
+    <Animated.View
+      style={{
+        flex: 1,
+        backgroundColor: '#0F0B1D',
+        alignItems: 'center',
+        justifyContent: 'center',
+        opacity: containerOpacity,
+      }}>
       <Animated.View style={{ opacity: logoOpacity, transform: [{ scale: logoScale }] }}>
         <Text style={{ fontSize: 64, fontWeight: '800', color: '#C084FC', letterSpacing: 12 }}>
           NUMO
         </Text>
       </Animated.View>
       <Animated.View style={{ opacity: taglineOpacity, marginTop: 16 }}>
-        <Text style={{ fontSize: 14, color: '#8B5CF6', letterSpacing: 4, textTransform: 'uppercase' }}>
+        <Text
+          style={{ fontSize: 14, color: '#8B5CF6', letterSpacing: 4, textTransform: 'uppercase' }}>
           Numerology & Chinese Zodiac
         </Text>
       </Animated.View>

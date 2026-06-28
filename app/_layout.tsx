@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Animated, View } from 'react-native';
 import { Slot } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -18,6 +18,16 @@ function RootLayoutInner() {
   const { showLockScreen } = useLock();
   const hasSeenSplash = useSplashStore((s) => s.hasSeenSplash);
   const [hydrated, setHydrated] = useState(useSplashStore.persist.hasHydrated());
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    fadeAnim.setValue(0);
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
 
   useEffect(() => {
     const unsub = useSplashStore.persist.onFinishHydration(() => setHydrated(true));
@@ -46,7 +56,9 @@ function RootLayoutInner() {
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <StatusBar style={isDark ? 'light' : 'dark'} />
       <ErrorBoundary>
-        <Slot />
+        <Animated.View style={{ flex: 1, opacity: fadeAnim }}>
+          <Slot />
+        </Animated.View>
       </ErrorBoundary>
     </View>
   );

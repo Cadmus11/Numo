@@ -1,9 +1,6 @@
-import { Animal, getAnimal, getAnimalYears } from './animals';
-import { Element, ElementYinYang, getElement, getYinYang, getFullElement } from './elements';
-import { CompatibilityRating, getZodiacCompatibility, getZodiacCompatibilityScore } from './compatibility';
-import { isDirectEnemy, getEnemyPairs } from './enemySigns';
-import { getAllianceGroup, getAllianceGroups, areInSameTriangle, getSecretFriend, isSecretFriend } from './triangles';
-import type { EnemyPair } from './enemySigns';
+import { Animal, getAnimal } from './animals';
+import { Element, ElementYinYang, getFullElement } from './elements';
+import { getAllianceGroup, getSecretFriend } from './triangles';
 import type { AllianceGroup } from './triangles';
 
 export interface ZodiacProfile {

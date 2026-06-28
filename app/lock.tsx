@@ -16,6 +16,7 @@ export default function LockScreen() {
   const [error, setError] = useState('');
   const [mode, setMode] = useState<'unlock' | 'set' | 'confirm' | 'change'>('unlock');
   const [newPin, setNewPin] = useState('');
+  const firstPin = useRef('');
   const hasPin = useLockStore((s) => s.hasPin());
   const setPinStore = useLockStore((s) => s.setPin);
   const clearPin = useLockStore((s) => s.clearPin);
@@ -46,11 +47,20 @@ export default function LockScreen() {
       setNewPin(next);
       if (next.length === 4) {
         if (mode === 'set') {
+          firstPin.current = next;
+          setNewPin('');
           setMode('confirm');
         } else if (mode === 'confirm') {
-          setPinStore(next);
-          setMode('unlock');
-          if (router.canGoBack()) router.back();
+          if (next === firstPin.current) {
+            setPinStore(next);
+            setMode('unlock');
+          } else {
+            setError('PINs do not match');
+            setNewPin('');
+          }
+          if (next === firstPin.current) {
+            if (router.canGoBack()) router.back();
+          }
         }
       }
     }
@@ -81,8 +91,24 @@ export default function LockScreen() {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.background, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 32 }}>
-      <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: colors.primaryContainer, justifyContent: 'center', alignItems: 'center', marginBottom: 16 }}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: colors.background,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: 32,
+      }}>
+      <View
+        style={{
+          width: 64,
+          height: 64,
+          borderRadius: 32,
+          backgroundColor: colors.primaryContainer,
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginBottom: 16,
+        }}>
         <Key size={28} color={colors.onPrimaryContainer} />
       </View>
 
@@ -108,8 +134,14 @@ export default function LockScreen() {
       </View>
 
       <View style={{ width: '100%', maxWidth: 280 }}>
-        {[['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].map((row, ri) => (
-          <View key={ri} style={{ flexDirection: 'row', justifyContent: 'space-around', marginBottom: 12 }}>
+        {[
+          ['1', '2', '3'],
+          ['4', '5', '6'],
+          ['7', '8', '9'],
+        ].map((row, ri) => (
+          <View
+            key={ri}
+            style={{ flexDirection: 'row', justifyContent: 'space-around', marginBottom: 12 }}>
             {row.map((d) => (
               <TouchableOpacity
                 key={d}
@@ -121,9 +153,10 @@ export default function LockScreen() {
                   backgroundColor: colors.surfaceVariant,
                   justifyContent: 'center',
                   alignItems: 'center',
-                }}
-              >
-                <Text style={{ fontSize: 24, fontWeight: '600', color: colors.onSurface }}>{d}</Text>
+                }}>
+                <Text style={{ fontSize: 24, fontWeight: '600', color: colors.onSurface }}>
+                  {d}
+                </Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -131,8 +164,7 @@ export default function LockScreen() {
         <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginBottom: 12 }}>
           <TouchableOpacity
             onPress={handleCancel}
-            style={{ width: 64, height: 64, justifyContent: 'center', alignItems: 'center' }}
-          >
+            style={{ width: 64, height: 64, justifyContent: 'center', alignItems: 'center' }}>
             <Text style={{ fontSize: 13, color: colors.onSurfaceVariant, fontWeight: '500' }}>
               {hasPin ? 'Clear' : ''}
             </Text>
@@ -146,15 +178,15 @@ export default function LockScreen() {
               backgroundColor: colors.surfaceVariant,
               justifyContent: 'center',
               alignItems: 'center',
-            }}
-          >
+            }}>
             <Text style={{ fontSize: 24, fontWeight: '600', color: colors.onSurface }}>0</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={handleDelete}
-            style={{ width: 64, height: 64, justifyContent: 'center', alignItems: 'center' }}
-          >
-            <Text style={{ fontSize: 13, color: colors.onSurfaceVariant, fontWeight: '500' }}>DEL</Text>
+            style={{ width: 64, height: 64, justifyContent: 'center', alignItems: 'center' }}>
+            <Text style={{ fontSize: 13, color: colors.onSurfaceVariant, fontWeight: '500' }}>
+              DEL
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

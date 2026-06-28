@@ -33,8 +33,8 @@ export default function CompareScreen() {
   const [profileBId, setProfileBId] = useState<string | null>(null);
   const [pickerFor, setPickerFor] = useState<'A' | 'B' | null>(null);
 
-  const profileA = profileAId ? getProfile(profileAId) ?? null : null;
-  const profileB = profileBId ? getProfile(profileBId) ?? null : null;
+  const profileA = profileAId ? (getProfile(profileAId) ?? null) : null;
+  const profileB = profileBId ? (getProfile(profileBId) ?? null) : null;
 
   const result = useMemo(() => {
     if (!profileA || !profileB) return null;
@@ -65,10 +65,6 @@ export default function CompareScreen() {
     }
   }, [profileA, profileB]);
 
-  const selectedProfiles = profiles.filter(
-    (p) => p.id !== (pickerFor === 'A' ? profileAId : profileBId)
-  );
-
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <View
@@ -80,8 +76,7 @@ export default function CompareScreen() {
           paddingVertical: 12,
           borderBottomWidth: 1,
           borderBottomColor: colors.outlineVariant,
-        }}
-      >
+        }}>
         <Text style={{ fontSize: 18, fontWeight: '700', color: colors.onSurface }}>
           Compatibility
         </Text>
@@ -94,19 +89,24 @@ export default function CompareScreen() {
           justifyContent: 'center',
           padding: 16,
           gap: 12,
-        }}
-      >
+        }}>
         <ProfilePickerButton
           label="Profile A"
           profile={profileA}
-          onPress={() => { impactAsync('light'); setPickerFor('A'); }}
+          onPress={() => {
+            impactAsync('light');
+            setPickerFor('A');
+          }}
           colors={colors}
         />
         <Text style={{ fontSize: 18, fontWeight: '700', color: colors.primary }}>&</Text>
         <ProfilePickerButton
           label="Profile B"
           profile={profileB}
-          onPress={() => { impactAsync('light'); setPickerFor('B'); }}
+          onPress={() => {
+            impactAsync('light');
+            setPickerFor('B');
+          }}
           colors={colors}
         />
       </View>
@@ -120,8 +120,20 @@ export default function CompareScreen() {
       )}
 
       {!profileA || !profileB ? (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 32 }}>
-          <Text style={{ fontSize: 15, color: colors.onSurfaceVariant, textAlign: 'center', lineHeight: 22 }}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingHorizontal: 32,
+          }}>
+          <Text
+            style={{
+              fontSize: 15,
+              color: colors.onSurfaceVariant,
+              textAlign: 'center',
+              lineHeight: 22,
+            }}>
             Select two profiles to compare their numerology and zodiac compatibility.
           </Text>
         </View>
@@ -139,8 +151,7 @@ export default function CompareScreen() {
         visible={pickerFor !== null}
         transparent
         animationType="slide"
-        onRequestClose={() => setPickerFor(null)}
-      >
+        onRequestClose={() => setPickerFor(null)}>
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)' }}>
           <View
             style={{
@@ -150,8 +161,7 @@ export default function CompareScreen() {
               borderTopLeftRadius: 20,
               borderTopRightRadius: 20,
               paddingTop: 16,
-            }}
-          >
+            }}>
             <View
               style={{
                 flexDirection: 'row',
@@ -159,8 +169,7 @@ export default function CompareScreen() {
                 alignItems: 'center',
                 paddingHorizontal: 16,
                 marginBottom: 12,
-              }}
-            >
+              }}>
               <Text style={{ fontSize: 18, fontWeight: '700', color: colors.onSurface }}>
                 Select Profile {pickerFor}
               </Text>
@@ -191,8 +200,7 @@ export default function CompareScreen() {
                       backgroundColor: isSelected ? colors.primaryContainer : 'transparent',
                       borderRadius: 12,
                       marginBottom: 4,
-                    }}
-                  >
+                    }}>
                     <View
                       style={{
                         width: 40,
@@ -202,10 +210,10 @@ export default function CompareScreen() {
                         alignItems: 'center',
                         justifyContent: 'center',
                         marginRight: 12,
-                      }}
-                    >
+                      }}>
                       <Text style={{ fontSize: 16, color: colors.primary, fontWeight: '700' }}>
-                        {item.firstName[0]}{item.lastName[0]}
+                        {item.firstName[0]}
+                        {item.lastName[0]}
                       </Text>
                     </View>
                     <View style={{ flex: 1 }}>
@@ -260,8 +268,7 @@ function ProfilePickerButton({
         borderColor: colors.outlineVariant,
         backgroundColor: colors.surfaceVariant,
         alignItems: 'center',
-      }}
-    >
+      }}>
       {profile ? (
         <>
           <View
@@ -273,13 +280,15 @@ function ProfilePickerButton({
               alignItems: 'center',
               justifyContent: 'center',
               marginBottom: 6,
-            }}
-          >
+            }}>
             <Text style={{ fontSize: 14, color: colors.primary, fontWeight: '700' }}>
-              {profile.firstName[0]}{profile.lastName[0]}
+              {profile.firstName[0]}
+              {profile.lastName[0]}
             </Text>
           </View>
-          <Text style={{ fontSize: 13, fontWeight: '600', color: colors.onSurface }} numberOfLines={1}>
+          <Text
+            style={{ fontSize: 13, fontWeight: '600', color: colors.onSurface }}
+            numberOfLines={1}>
             {label === 'Profile A' ? profile.firstName : profile.firstName}
           </Text>
         </>
@@ -294,8 +303,7 @@ function ProfilePickerButton({
               alignItems: 'center',
               justifyContent: 'center',
               marginBottom: 6,
-            }}
-          >
+            }}>
             <Text style={{ fontSize: 18, color: colors.onSurfaceVariant }}>?</Text>
           </View>
           <Text style={{ fontSize: 12, color: colors.onSurfaceVariant }}>{label}</Text>

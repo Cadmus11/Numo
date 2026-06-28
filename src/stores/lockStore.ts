@@ -6,7 +6,7 @@ function hashPin(pin: string): string {
   let hash = 0;
   for (let i = 0; i < pin.length; i++) {
     const char = pin.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
+    hash = (hash << 5) - hash + char;
     hash = hash & hash;
   }
   return Math.abs(hash).toString(36);
@@ -50,6 +50,6 @@ export const useLockStore = create<LockState>()(
     {
       name: '@numo/lock',
       storage: lockStorage,
-    },
-  ),
+    }
+  )
 );

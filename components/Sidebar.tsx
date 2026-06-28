@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react';
 import { Pressable, Text, TouchableOpacity, View } from 'react-native';
 import { router } from 'expo-router';
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from 'src/contexts/ThemeContext';
 
@@ -26,7 +22,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ visible, onClose }) => {
   useEffect(() => {
     translateX.value = withTiming(visible ? 0 : -SIDEBAR_WIDTH, { duration: 250 });
     overlayOpacity.value = withTiming(visible ? 1 : 0, { duration: 250 });
-  }, [visible]);
+  }, [visible, translateX, overlayOpacity]);
 
   const sidebarStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: translateX.value }],
@@ -41,8 +37,19 @@ export const Sidebar: React.FC<SidebarProps> = ({ visible, onClose }) => {
     onClose();
   };
 
-  const PremiumItem = ({ label, icon, colors: c }: { label: string; icon: string; colors: any; onPress: () => void }) => (
+  const PremiumItem = ({
+    label,
+    icon,
+    colors: c,
+    onPress,
+  }: {
+    label: string;
+    icon: string;
+    colors: any;
+    onPress: () => void;
+  }) => (
     <TouchableOpacity
+      onPress={onPress}
       style={{
         flexDirection: 'row',
         alignItems: 'center',
@@ -51,8 +58,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ visible, onClose }) => {
         borderRadius: 10,
         marginBottom: 2,
         opacity: 0.5,
-      }}
-    >
+      }}>
       <Text style={{ fontSize: 14, marginRight: 10 }}>{icon}</Text>
       <Text style={{ fontSize: 14, color: c.onSurface, fontWeight: '500' }}>{label}</Text>
       <View
@@ -62,8 +68,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ visible, onClose }) => {
           paddingVertical: 2,
           borderRadius: 6,
           backgroundColor: c.primary + '30',
-        }}
-      >
+        }}>
         <Text style={{ fontSize: 10, color: c.primary, fontWeight: '700' }}>PRO</Text>
       </View>
     </TouchableOpacity>
@@ -83,8 +88,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ visible, onClose }) => {
             zIndex: 90,
           },
           overlayStyle,
-        ]}
-      >
+        ]}>
         <Pressable style={{ flex: 1 }} onPress={onClose} />
       </Animated.View>
 
@@ -107,8 +111,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ visible, onClose }) => {
             elevation: 10,
           },
           sidebarStyle,
-        ]}
-      >
+        ]}>
         <Text
           style={{
             fontSize: 24,
@@ -117,8 +120,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ visible, onClose }) => {
             letterSpacing: 2,
             marginBottom: 32,
             textAlign: 'center',
-          }}
-        >
+          }}>
           NUMO
         </Text>
 
@@ -130,8 +132,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ visible, onClose }) => {
             borderRadius: 12,
             marginBottom: 4,
             backgroundColor: colors.primaryContainer,
-          }}
-        >
+          }}>
           <Text style={{ fontSize: 16, color: colors.onPrimaryContainer, fontWeight: '600' }}>
             Home
           </Text>
@@ -144,11 +145,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ visible, onClose }) => {
             paddingHorizontal: 12,
             borderRadius: 12,
             marginBottom: 4,
-          }}
-        >
-          <Text style={{ fontSize: 16, color: colors.onSurface, fontWeight: '600' }}>
-            Profiles
-          </Text>
+          }}>
+          <Text style={{ fontSize: 16, color: colors.onSurface, fontWeight: '600' }}>Profiles</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -158,8 +156,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ visible, onClose }) => {
             paddingHorizontal: 12,
             borderRadius: 12,
             marginBottom: 4,
-          }}
-        >
+          }}>
           <Text style={{ fontSize: 16, color: colors.onSurface, fontWeight: '600' }}>
             Compatibility
           </Text>
@@ -172,11 +169,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ visible, onClose }) => {
             paddingHorizontal: 12,
             borderRadius: 12,
             marginBottom: 4,
-          }}
-        >
-          <Text style={{ fontSize: 16, color: colors.onSurface, fontWeight: '600' }}>
-            Journal
-          </Text>
+          }}>
+          <Text style={{ fontSize: 16, color: colors.onSurface, fontWeight: '600' }}>Journal</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -186,11 +180,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ visible, onClose }) => {
             paddingHorizontal: 12,
             borderRadius: 12,
             marginBottom: 4,
-          }}
-        >
-          <Text style={{ fontSize: 16, color: colors.onSurface, fontWeight: '600' }}>
-            Tools
-          </Text>
+          }}>
+          <Text style={{ fontSize: 16, color: colors.onSurface, fontWeight: '600' }}>Tools</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -200,11 +191,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ visible, onClose }) => {
             paddingHorizontal: 12,
             borderRadius: 12,
             marginBottom: 4,
-          }}
-        >
-          <Text style={{ fontSize: 16, color: colors.onSurface, fontWeight: '600' }}>
-            Settings
-          </Text>
+          }}>
+          <Text style={{ fontSize: 16, color: colors.onSurface, fontWeight: '600' }}>Settings</Text>
         </TouchableOpacity>
 
         <View
@@ -224,16 +212,35 @@ export const Sidebar: React.FC<SidebarProps> = ({ visible, onClose }) => {
             textTransform: 'uppercase',
             marginBottom: 8,
             paddingHorizontal: 12,
-          }}
-        >
+          }}>
           NUMO Pro
         </Text>
 
         <PremiumItem label="Advanced Reports" icon={'\u2B50'} colors={colors} onPress={() => {}} />
-        <PremiumItem label="Unlimited Compatibility" icon={'\u2665\uFE0F'} colors={colors} onPress={() => {}} />
-        <PremiumItem label="Business Numerology" icon={'\uD83D\uDCCA'} colors={colors} onPress={() => {}} />
-        <PremiumItem label="Baby Name Analysis" icon={'\uD83D\uDC76'} colors={colors} onPress={() => {}} />
-        <PremiumItem label="AI Coach (Online)" icon={'\uD83E\uDD16'} colors={colors} onPress={() => {}} />
+        <PremiumItem
+          label="Unlimited Compatibility"
+          icon={'\u2665\uFE0F'}
+          colors={colors}
+          onPress={() => {}}
+        />
+        <PremiumItem
+          label="Business Numerology"
+          icon={'\uD83D\uDCCA'}
+          colors={colors}
+          onPress={() => {}}
+        />
+        <PremiumItem
+          label="Baby Name Analysis"
+          icon={'\uD83D\uDC76'}
+          colors={colors}
+          onPress={() => {}}
+        />
+        <PremiumItem
+          label="AI Coach (Online)"
+          icon={'\uD83E\uDD16'}
+          colors={colors}
+          onPress={() => {}}
+        />
       </Animated.View>
     </>
   );

@@ -1,4 +1,12 @@
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { useColorScheme } from 'react-native';
 import Color from 'color';
 import { themes, type ThemeDefinition } from 'src/data/themes';
@@ -157,9 +165,12 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const systemScheme = useColorScheme() ?? 'light';
   const [scheme, setSchemeState] = useState<ThemeScheme>(systemScheme);
   const [themeId, setThemeId] = useState<string>(defaultThemeId);
+  const userToggled = useRef(false);
 
   useEffect(() => {
-    setSchemeState(systemScheme);
+    if (!userToggled.current) {
+      setSchemeState(systemScheme);
+    }
   }, [systemScheme]);
 
   const selectTheme = useCallback((id: string) => {
@@ -167,10 +178,12 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, []);
 
   const toggleScheme = useCallback(() => {
+    userToggled.current = true;
     setSchemeState((prev) => (prev === 'light' ? 'dark' : 'light'));
   }, []);
 
   const setScheme = useCallback((s: ThemeScheme) => {
+    userToggled.current = true;
     setSchemeState(s);
   }, []);
 
@@ -191,11 +204,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     return { theme, availableThemes: themes, selectTheme, toggleScheme, setScheme };
   }, [themeId, scheme, selectTheme, toggleScheme, setScheme]);
 
-  return (
-    <ThemeContext.Provider value={value}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 };
 
 export const useTheme = (): ThemeContextValue => {

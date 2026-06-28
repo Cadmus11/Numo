@@ -6,7 +6,12 @@ import { useTheme } from 'src/contexts/ThemeContext';
 import { useLockStore } from 'src/stores/lockStore';
 import { useLock } from 'src/contexts/LockContext';
 import { impactAsync } from 'src/utils/haptics';
-import { saveBackupToStorage, getSavedBackup, restoreBackup, getBackupJSON, importProfiles } from 'src/storage/backup';
+import {
+  saveBackupToStorage,
+  getSavedBackup,
+  restoreBackup,
+  getBackupJSON,
+} from 'src/storage/backup';
 
 export default function SettingsScreen() {
   const { theme, availableThemes, selectTheme, toggleScheme } = useTheme();
@@ -21,9 +26,12 @@ export default function SettingsScreen() {
   const [confirmPin, setConfirmPin] = useState('');
 
   const handleExportBackup = () => {
-    const json = getBackupJSON();
+    getBackupJSON();
     saveBackupToStorage();
-    Alert.alert('Backup Saved', 'All data has been backed up to local storage. The backup JSON is ready for export.');
+    Alert.alert(
+      'Backup Saved',
+      'All data has been backed up to local storage. The backup JSON is ready for export.'
+    );
   };
 
   const handleRestoreBackup = () => {
@@ -42,10 +50,13 @@ export default function SettingsScreen() {
           style: 'destructive',
           onPress: () => {
             restoreBackup(backup);
-            Alert.alert('Restored', 'Backup has been restored. Restart the app for changes to take full effect.');
+            Alert.alert(
+              'Restored',
+              'Backup has been restored. Restart the app for changes to take full effect.'
+            );
           },
         },
-      ],
+      ]
     );
   };
 
@@ -82,9 +93,10 @@ export default function SettingsScreen() {
           paddingVertical: 12,
           borderBottomWidth: 1,
           borderBottomColor: colors.outlineVariant,
-        }}
-      >
-        <TouchableOpacity onPress={() => router.back()} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+        }}>
+        <TouchableOpacity
+          onPress={() => router.back()}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
           <ArrowLeft size={24} color={colors.onSurface} />
         </TouchableOpacity>
         <Text
@@ -93,8 +105,7 @@ export default function SettingsScreen() {
             fontWeight: '700',
             color: colors.onSurface,
             marginLeft: 16,
-          }}
-        >
+          }}>
           Settings
         </Text>
       </View>
@@ -102,14 +113,24 @@ export default function SettingsScreen() {
       <ScrollView
         style={{ flex: 1 }}
         contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
-        showsVerticalScrollIndicator={false}
-      >
-        <Text style={{ fontSize: 14, fontWeight: '600', color: colors.onSurfaceVariant, marginBottom: 12, textTransform: 'uppercase', letterSpacing: 1 }}>
+        showsVerticalScrollIndicator={false}>
+        <Text
+          style={{
+            fontSize: 14,
+            fontWeight: '600',
+            color: colors.onSurfaceVariant,
+            marginBottom: 12,
+            textTransform: 'uppercase',
+            letterSpacing: 1,
+          }}>
           Appearance
         </Text>
 
         <TouchableOpacity
-          onPress={() => { impactAsync('light'); toggleScheme(); }}
+          onPress={() => {
+            impactAsync('light');
+            toggleScheme();
+          }}
           accessibilityRole="button"
           accessibilityLabel="Toggle dark mode"
           style={{
@@ -121,10 +142,13 @@ export default function SettingsScreen() {
             backgroundColor: colors.surfaceVariant,
             borderRadius: 12,
             marginBottom: 24,
-          }}
-        >
+          }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-            {isDark ? <Moon size={20} color={colors.onSurface} /> : <Sun1 size={20} color={colors.onSurface} />}
+            {isDark ? (
+              <Moon size={20} color={colors.onSurface} />
+            ) : (
+              <Sun1 size={20} color={colors.onSurface} />
+            )}
             <Text style={{ fontSize: 16, color: colors.onSurface, fontWeight: '500' }}>
               Dark Mode
             </Text>
@@ -137,8 +161,7 @@ export default function SettingsScreen() {
               backgroundColor: isDark ? colors.primary : colors.outline,
               padding: 2,
               justifyContent: 'center',
-            }}
-          >
+            }}>
             <View
               style={{
                 width: 20,
@@ -151,7 +174,15 @@ export default function SettingsScreen() {
           </View>
         </TouchableOpacity>
 
-        <Text style={{ fontSize: 14, fontWeight: '600', color: colors.onSurfaceVariant, marginBottom: 12, textTransform: 'uppercase', letterSpacing: 1 }}>
+        <Text
+          style={{
+            fontSize: 14,
+            fontWeight: '600',
+            color: colors.onSurfaceVariant,
+            marginBottom: 12,
+            textTransform: 'uppercase',
+            letterSpacing: 1,
+          }}>
           Theme — {definition.name}
         </Text>
 
@@ -161,7 +192,10 @@ export default function SettingsScreen() {
             return (
               <TouchableOpacity
                 key={t.id}
-                onPress={() => { impactAsync('light'); selectTheme(t.id); }}
+                onPress={() => {
+                  impactAsync('light');
+                  selectTheme(t.id);
+                }}
                 accessibilityRole="button"
                 accessibilityLabel={`Select ${t.name} theme`}
                 style={{
@@ -172,8 +206,7 @@ export default function SettingsScreen() {
                   backgroundColor: t.colors.surface,
                   padding: 12,
                   marginBottom: 4,
-                }}
-              >
+                }}>
                 <View style={{ flexDirection: 'row', gap: 6, marginBottom: 8 }}>
                   {[t.colors.primary, t.colors.secondary, t.colors.accent].map((color, i) => (
                     <View
@@ -188,12 +221,18 @@ export default function SettingsScreen() {
                   ))}
                 </View>
                 <Text
-                  style={{ fontSize: 13, fontWeight: '600', color: t.colors.primary, marginBottom: 2 }}
-                  numberOfLines={1}
-                >
+                  style={{
+                    fontSize: 13,
+                    fontWeight: '600',
+                    color: t.colors.primary,
+                    marginBottom: 2,
+                  }}
+                  numberOfLines={1}>
                   {t.name}
                 </Text>
-                <Text style={{ fontSize: 11, color: t.colors.text, opacity: 0.6 }} numberOfLines={1}>
+                <Text
+                  style={{ fontSize: 11, color: t.colors.text, opacity: 0.6 }}
+                  numberOfLines={1}>
                   {t.feel.slice(0, 2).join(' \u00b7 ')}
                 </Text>
                 {t.type && (
@@ -205,9 +244,10 @@ export default function SettingsScreen() {
                       paddingVertical: 2,
                       borderRadius: 6,
                       backgroundColor: t.colors.primary + '30',
-                    }}
-                  >
-                    <Text style={{ fontSize: 10, color: t.colors.primary, fontWeight: '600' }}>{t.type}</Text>
+                    }}>
+                    <Text style={{ fontSize: 10, color: t.colors.primary, fontWeight: '600' }}>
+                      {t.type}
+                    </Text>
                   </View>
                 )}
               </TouchableOpacity>
@@ -215,12 +255,24 @@ export default function SettingsScreen() {
           })}
         </View>
 
-        <Text style={{ fontSize: 14, fontWeight: '600', color: colors.onSurfaceVariant, marginBottom: 12, textTransform: 'uppercase', letterSpacing: 1 }}>
+        <Text
+          style={{
+            fontSize: 14,
+            fontWeight: '600',
+            color: colors.onSurfaceVariant,
+            marginBottom: 12,
+            textTransform: 'uppercase',
+            letterSpacing: 1,
+          }}>
           App Lock
         </Text>
 
         <TouchableOpacity
-          onPress={() => { impactAsync('light'); if (hasPin) lockApp(); else setShowSetPin(true); }}
+          onPress={() => {
+            impactAsync('light');
+            if (hasPin) lockApp();
+            else setShowSetPin(true);
+          }}
           accessibilityRole="button"
           accessibilityLabel={hasPin ? 'Lock app now' : 'Set app lock PIN'}
           style={{
@@ -231,8 +283,7 @@ export default function SettingsScreen() {
             backgroundColor: colors.surfaceVariant,
             borderRadius: 12,
             marginBottom: 8,
-          }}
-        >
+          }}>
           <Lock size={20} color={colors.onSurface} style={{ marginRight: 10 }} />
           <Text style={{ fontSize: 16, color: colors.onSurface, fontWeight: '500', flex: 1 }}>
             {hasPin ? 'Lock App Now' : 'Set App Lock PIN'}
@@ -245,8 +296,7 @@ export default function SettingsScreen() {
               backgroundColor: hasPin ? colors.primary : colors.outline,
               padding: 2,
               justifyContent: 'center',
-            }}
-          >
+            }}>
             <View
               style={{
                 width: 20,
@@ -266,8 +316,7 @@ export default function SettingsScreen() {
               borderRadius: 12,
               padding: 14,
               marginBottom: 8,
-            }}
-          >
+            }}>
             <TextInput
               style={{
                 backgroundColor: colors.background,
@@ -321,9 +370,10 @@ export default function SettingsScreen() {
                   borderRadius: 8,
                   backgroundColor: colors.outline,
                   alignItems: 'center',
-                }}
-              >
-                <Text style={{ fontSize: 14, fontWeight: '600', color: colors.onSurface }}>Cancel</Text>
+                }}>
+                <Text style={{ fontSize: 14, fontWeight: '600', color: colors.onSurface }}>
+                  Cancel
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={handleSetPin}
@@ -333,9 +383,10 @@ export default function SettingsScreen() {
                   borderRadius: 8,
                   backgroundColor: colors.primary,
                   alignItems: 'center',
-                }}
-              >
-                <Text style={{ fontSize: 14, fontWeight: '600', color: colors.onPrimary }}>Save</Text>
+                }}>
+                <Text style={{ fontSize: 14, fontWeight: '600', color: colors.onPrimary }}>
+                  Save
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -343,7 +394,10 @@ export default function SettingsScreen() {
 
         {hasPin && (
           <TouchableOpacity
-            onPress={() => { impactAsync('medium'); handleClearPin(); }}
+            onPress={() => {
+              impactAsync('medium');
+              handleClearPin();
+            }}
             accessibilityRole="button"
             accessibilityLabel="Remove PIN lock"
             style={{
@@ -354,8 +408,7 @@ export default function SettingsScreen() {
               backgroundColor: colors.surfaceVariant,
               borderRadius: 12,
               marginBottom: 24,
-            }}
-          >
+            }}>
             <Key size={20} color={colors.error} style={{ marginRight: 10 }} />
             <Text style={{ fontSize: 16, color: colors.error, fontWeight: '500' }}>
               Remove PIN Lock
@@ -363,12 +416,23 @@ export default function SettingsScreen() {
           </TouchableOpacity>
         )}
 
-        <Text style={{ fontSize: 14, fontWeight: '600', color: colors.onSurfaceVariant, marginBottom: 12, textTransform: 'uppercase', letterSpacing: 1 }}>
+        <Text
+          style={{
+            fontSize: 14,
+            fontWeight: '600',
+            color: colors.onSurfaceVariant,
+            marginBottom: 12,
+            textTransform: 'uppercase',
+            letterSpacing: 1,
+          }}>
           Data Management
         </Text>
 
         <TouchableOpacity
-          onPress={() => { impactAsync('light'); handleExportBackup(); }}
+          onPress={() => {
+            impactAsync('light');
+            handleExportBackup();
+          }}
           accessibilityRole="button"
           accessibilityLabel="Export backup"
           style={{
@@ -379,8 +443,7 @@ export default function SettingsScreen() {
             backgroundColor: colors.surfaceVariant,
             borderRadius: 12,
             marginBottom: 8,
-          }}
-        >
+          }}>
           <ExportCurve size={20} color={colors.onSurface} style={{ marginRight: 10 }} />
           <Text style={{ fontSize: 16, color: colors.onSurface, fontWeight: '500' }}>
             Export Backup
@@ -388,7 +451,10 @@ export default function SettingsScreen() {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => { impactAsync('medium'); handleRestoreBackup(); }}
+          onPress={() => {
+            impactAsync('medium');
+            handleRestoreBackup();
+          }}
           accessibilityRole="button"
           accessibilityLabel="Restore backup"
           style={{
@@ -398,29 +464,74 @@ export default function SettingsScreen() {
             paddingHorizontal: 16,
             backgroundColor: colors.surfaceVariant,
             borderRadius: 12,
-          }}
-        >
+          }}>
           <ImportCurve size={20} color={colors.onSurface} style={{ marginRight: 10 }} />
           <Text style={{ fontSize: 16, color: colors.onSurface, fontWeight: '500' }}>
             Restore Backup
           </Text>
         </TouchableOpacity>
 
-        <Text style={{ fontSize: 14, fontWeight: '600', color: colors.onSurfaceVariant, marginBottom: 12, marginTop: 32, textTransform: 'uppercase', letterSpacing: 1 }}>
+        <Text
+          style={{
+            fontSize: 14,
+            fontWeight: '600',
+            color: colors.onSurfaceVariant,
+            marginBottom: 12,
+            marginTop: 32,
+            textTransform: 'uppercase',
+            letterSpacing: 1,
+          }}>
           NUMO Pro
         </Text>
 
-        <View style={{ backgroundColor: colors.surfaceVariant, borderRadius: 12, padding: 14, marginBottom: 8 }}>
-          <Text style={{ fontSize: 13, color: colors.onSurfaceVariant, lineHeight: 18, marginBottom: 12 }}>
-            Unlock the full NUMO experience with premium features. Support development and get access to advanced tools.
+        <View
+          style={{
+            backgroundColor: colors.surfaceVariant,
+            borderRadius: 12,
+            padding: 14,
+            marginBottom: 8,
+          }}>
+          <Text
+            style={{
+              fontSize: 13,
+              color: colors.onSurfaceVariant,
+              lineHeight: 18,
+              marginBottom: 12,
+            }}>
+            Unlock the full NUMO experience with premium features. Support development and get
+            access to advanced tools.
           </Text>
           {[
-            { icon: '\u2B50', label: 'Advanced Reports', desc: 'In-depth analysis with detailed breakdowns' },
-            { icon: '\u2665\uFE0F', label: 'Unlimited Compatibility', desc: 'Compare unlimited profiles' },
-            { icon: '\uD83D\uDCCA', label: 'Business Numerology', desc: 'Company & product name analysis' },
-            { icon: '\uD83D\uDC76', label: 'Baby Name Analysis', desc: 'Find the perfect name for your baby' },
-            { icon: '\uD83D\uDCC4', label: 'PDF Export', desc: 'Branded PDF reports without watermark' },
-            { icon: '\uD83E\uDD16', label: 'AI Coach (Online)', desc: 'Personalized AI numerology guidance' },
+            {
+              icon: '\u2B50',
+              label: 'Advanced Reports',
+              desc: 'In-depth analysis with detailed breakdowns',
+            },
+            {
+              icon: '\u2665\uFE0F',
+              label: 'Unlimited Compatibility',
+              desc: 'Compare unlimited profiles',
+            },
+            {
+              icon: '\uD83D\uDCCA',
+              label: 'Business Numerology',
+              desc: 'Company & product name analysis',
+            },
+            {
+              icon: '\uD83D\uDC76',
+              label: 'Baby Name Analysis',
+              desc: 'Find the perfect name for your baby',
+            },
+            {
+              icon: '\uD83D\uDCC4',
+              label: 'PDF Export',
+              desc: 'Branded PDF reports without watermark',
+            },
+            {
+              icon: '\uD83E\uDD16',
+              label: 'AI Coach (Online)',
+              desc: 'Personalized AI numerology guidance',
+            },
           ].map((feat, i) => (
             <View
               key={i}
@@ -430,21 +541,34 @@ export default function SettingsScreen() {
                 paddingVertical: 10,
                 borderBottomWidth: i < 5 ? 1 : 0,
                 borderBottomColor: colors.outlineVariant,
-              }}
-            >
+              }}>
               <Text style={{ fontSize: 18, marginRight: 12 }}>{feat.icon}</Text>
               <View style={{ flex: 1 }}>
-                <Text style={{ fontSize: 14, fontWeight: '600', color: colors.onSurface }}>{feat.label}</Text>
+                <Text style={{ fontSize: 14, fontWeight: '600', color: colors.onSurface }}>
+                  {feat.label}
+                </Text>
                 <Text style={{ fontSize: 12, color: colors.onSurfaceVariant }}>{feat.desc}</Text>
               </View>
-              <View style={{ paddingHorizontal: 8, paddingVertical: 3, borderRadius: 6, backgroundColor: colors.primary + '30' }}>
+              <View
+                style={{
+                  paddingHorizontal: 8,
+                  paddingVertical: 3,
+                  borderRadius: 6,
+                  backgroundColor: colors.primary + '30',
+                }}>
                 <Text style={{ fontSize: 10, color: colors.primary, fontWeight: '700' }}>PRO</Text>
               </View>
             </View>
           ))}
         </View>
 
-        <Text style={{ fontSize: 11, color: colors.onSurfaceVariant, textAlign: 'center', marginTop: 16 }}>
+        <Text
+          style={{
+            fontSize: 11,
+            color: colors.onSurfaceVariant,
+            textAlign: 'center',
+            marginTop: 16,
+          }}>
           NUMO v1.0.0 Prototype \u2014 All features shown work fully offline
         </Text>
       </ScrollView>

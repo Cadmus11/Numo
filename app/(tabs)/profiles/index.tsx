@@ -1,12 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import {
-  FlatList,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  Alert,
-} from 'react-native';
+import { FlatList, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
 import { router } from 'expo-router';
 import { Add, Heart, Profile, SearchNormal1 } from 'iconsax-react-native';
 import { useTheme } from 'src/contexts/ThemeContext';
@@ -36,7 +29,7 @@ export default function ProfileListScreen() {
         (p) =>
           p.firstName.toLowerCase().includes(lower) ||
           p.lastName.toLowerCase().includes(lower) ||
-          p.nickname.toLowerCase().includes(lower),
+          p.nickname.toLowerCase().includes(lower)
       );
     }
     if (groupFilter) {
@@ -56,7 +49,7 @@ export default function ProfileListScreen() {
         },
       ]);
     },
-    [deleteProfile],
+    [deleteProfile]
   );
 
   const renderItem = ({ item }: { item: (typeof profiles)[0] }) => {
@@ -66,7 +59,10 @@ export default function ProfileListScreen() {
 
     return (
       <TouchableOpacity
-        onPress={() => { impactAsync('light'); router.push(`/(tabs)/profiles/${item.id}`); }}
+        onPress={() => {
+          impactAsync('light');
+          router.push(`/(tabs)/profiles/${item.id}`);
+        }}
         onLongPress={() => handleDelete(item.id, name)}
         accessibilityRole="button"
         accessibilityLabel={`${name} profile`}
@@ -78,8 +74,7 @@ export default function ProfileListScreen() {
           borderRadius: 12,
           backgroundColor: colors.surfaceVariant,
           width: viewMode === 'grid' ? '48%' : '100%',
-        }}
-      >
+        }}>
         <View
           style={{
             width: viewMode === 'list' ? 44 : 56,
@@ -90,8 +85,7 @@ export default function ProfileListScreen() {
             alignItems: 'center',
             marginBottom: viewMode === 'grid' ? 8 : 0,
             marginRight: viewMode === 'list' ? 12 : 0,
-          }}
-        >
+          }}>
           {item.photo ? (
             <View />
           ) : (
@@ -103,22 +97,21 @@ export default function ProfileListScreen() {
         <View style={{ flex: 1 }}>
           <Text
             style={{ fontSize: 15, fontWeight: '600', color: colors.onSurface }}
-            numberOfLines={1}
-          >
+            numberOfLines={1}>
             {name}
           </Text>
           {item.nickname ? (
             <Text style={{ fontSize: 12, color: colors.onSurfaceVariant }} numberOfLines={1}>
-              {'"'}{item.nickname}{'"'}
+              {'"'}
+              {item.nickname}
+              {'"'}
             </Text>
           ) : null}
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 2 }}>
             <Text style={{ fontSize: 11, color: colors.onSurfaceVariant }}>
               {item.type ?? 'Custom'}
             </Text>
-            {item.favorite ? (
-              <Heart size={12} color={colors.error} variant="Bold" />
-            ) : null}
+            {item.favorite ? <Heart size={12} color={colors.error} variant="Bold" /> : null}
           </View>
         </View>
       </TouchableOpacity>
@@ -136,12 +129,15 @@ export default function ProfileListScreen() {
           paddingVertical: 12,
           borderBottomWidth: 1,
           borderBottomColor: colors.outlineVariant,
-        }}
-      >
-        <Text style={{ fontSize: 20, fontWeight: '700', color: colors.onSurface }}>
-          Profiles
-        </Text>
-        <TouchableOpacity onPress={() => { impactAsync('light'); router.push('/(tabs)/profiles/new'); }} accessibilityRole="button" accessibilityLabel="Add profile">
+        }}>
+        <Text style={{ fontSize: 20, fontWeight: '700', color: colors.onSurface }}>Profiles</Text>
+        <TouchableOpacity
+          onPress={() => {
+            impactAsync('light');
+            router.push('/(tabs)/profiles/new');
+          }}
+          accessibilityRole="button"
+          accessibilityLabel="Add profile">
           <Add size={24} color={colors.primary} />
         </TouchableOpacity>
       </View>
@@ -155,8 +151,7 @@ export default function ProfileListScreen() {
             borderRadius: 10,
             paddingHorizontal: 12,
             height: 40,
-          }}
-        >
+          }}>
           <SearchNormal1 size={18} color={colors.onSurfaceVariant} />
           <TextInput
             style={{
@@ -181,15 +176,13 @@ export default function ProfileListScreen() {
               paddingVertical: 6,
               borderRadius: 16,
               backgroundColor: groupFilter === '' ? colors.primary : colors.surfaceVariant,
-            }}
-          >
+            }}>
             <Text
               style={{
                 fontSize: 12,
                 fontWeight: '600',
                 color: groupFilter === '' ? colors.onPrimary : colors.onSurfaceVariant,
-              }}
-            >
+              }}>
               All
             </Text>
           </TouchableOpacity>
@@ -202,15 +195,13 @@ export default function ProfileListScreen() {
                 paddingVertical: 6,
                 borderRadius: 16,
                 backgroundColor: groupFilter === g ? colors.primary : colors.surfaceVariant,
-              }}
-            >
+              }}>
               <Text
                 style={{
                   fontSize: 12,
                   fontWeight: '600',
                   color: groupFilter === g ? colors.onPrimary : colors.onSurfaceVariant,
-                }}
-              >
+                }}>
                 {g}
               </Text>
             </TouchableOpacity>
@@ -220,8 +211,12 @@ export default function ProfileListScreen() {
 
       {filtered.length === 0 ? (
         <View
-          style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 32 }}
-        >
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingHorizontal: 32,
+          }}>
           <Profile size={48} color={colors.onSurfaceVariant} />
           <Text
             style={{
@@ -229,8 +224,7 @@ export default function ProfileListScreen() {
               color: colors.onSurfaceVariant,
               marginTop: 12,
               textAlign: 'center',
-            }}
-          >
+            }}>
             {search || groupFilter
               ? 'No profiles match your filters'
               : 'No profiles yet. Tap + to add one.'}

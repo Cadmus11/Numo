@@ -6,11 +6,7 @@ function challengeReduce(a: number, b: number): number {
   return reduceNumber(diff, false);
 }
 
-export function getChallenges(
-  day: number,
-  month: number,
-  year: number,
-): ChallengeSet {
+export function getChallenges(day: number, month: number, year: number): ChallengeSet {
   return {
     first: challengeReduce(month, day),
     second: challengeReduce(day, year),

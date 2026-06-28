@@ -196,7 +196,7 @@ export const lifePathMeanings: Record<LifePathNumber, LifePathMeaning> = {
       'Learn to find stability within adventure',
     ],
     relationshipStyle:
-      'You are an exciting and spontaneous partner who keeps relationships fresh and dynamic. You need a partner who understands your need for freedom and doesn\'t try to confine you. The key to your heart is shared adventure and intellectual stimulation.',
+      "You are an exciting and spontaneous partner who keeps relationships fresh and dynamic. You need a partner who understands your need for freedom and doesn't try to confine you. The key to your heart is shared adventure and intellectual stimulation.",
     compatibleNumbers: '1, 3, 6, 7, 9',
   },
   6: {

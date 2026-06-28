@@ -8,7 +8,12 @@ interface SkeletonLoaderProps {
   style?: any;
 }
 
-export function SkeletonLoader({ width = '100%', height = 16, borderRadius = 8, style }: SkeletonLoaderProps) {
+export function SkeletonLoader({
+  width = '100%',
+  height = 16,
+  borderRadius = 8,
+  style,
+}: SkeletonLoaderProps) {
   const opacity = useRef(new Animated.Value(0.3)).current;
 
   useEffect(() => {
@@ -16,7 +21,7 @@ export function SkeletonLoader({ width = '100%', height = 16, borderRadius = 8, 
       Animated.sequence([
         Animated.timing(opacity, { toValue: 1, duration: 800, useNativeDriver: true }),
         Animated.timing(opacity, { toValue: 0.3, duration: 800, useNativeDriver: true }),
-      ]),
+      ])
     );
     animation.start();
     return () => animation.stop();
@@ -24,7 +29,10 @@ export function SkeletonLoader({ width = '100%', height = 16, borderRadius = 8, 
 
   return (
     <Animated.View
-      style={[{ width: width as any, height, borderRadius, backgroundColor: '#1A162A', opacity }, style]}
+      style={[
+        { width: width as any, height, borderRadius, backgroundColor: '#1A162A', opacity },
+        style,
+      ]}
       accessibilityLabel="Loading"
       accessibilityRole="progressbar"
     />
@@ -33,7 +41,13 @@ export function SkeletonLoader({ width = '100%', height = 16, borderRadius = 8, 
 
 export function CardSkeleton({ colors }: { colors: any }) {
   return (
-    <View style={{ backgroundColor: colors.surfaceVariant, borderRadius: 12, padding: 14, marginBottom: 10 }}>
+    <View
+      style={{
+        backgroundColor: colors.surfaceVariant,
+        borderRadius: 12,
+        padding: 14,
+        marginBottom: 10,
+      }}>
       <SkeletonLoader width="60%" height={14} borderRadius={6} />
       <SkeletonLoader width="40%" height={12} borderRadius={6} style={{ marginTop: 8 }} />
       <SkeletonLoader width="80%" height={12} borderRadius={6} style={{ marginTop: 6 }} />

@@ -23,8 +23,17 @@ export const pinnacleMeanings: Record<number, PinnacleMeaning> = {
       'Balancing independence with collaboration',
       'Resisting the temptation to isolate',
     ],
-    careerThemes: ['Leadership positions', 'Entrepreneurial ventures', 'Independent contracting', 'Pioneering new approaches'],
-    relationshipThemes: ['Learning to be yourself in relationships', 'Balancing partnership with independence', 'Attracting partners who respect your autonomy'],
+    careerThemes: [
+      'Leadership positions',
+      'Entrepreneurial ventures',
+      'Independent contracting',
+      'Pioneering new approaches',
+    ],
+    relationshipThemes: [
+      'Learning to be yourself in relationships',
+      'Balancing partnership with independence',
+      'Attracting partners who respect your autonomy',
+    ],
   },
   2: {
     number: 2,
@@ -41,8 +50,17 @@ export const pinnacleMeanings: Record<number, PinnacleMeaning> = {
       'Managing sensitivity to criticism',
       'Finding balance in relationships',
     ],
-    careerThemes: ['Collaborative projects', 'Team leadership', 'Mediation and diplomacy', 'Support and service roles'],
-    relationshipThemes: ['Deep partnership building', 'Learning compromise', 'Developing emotional intimacy'],
+    careerThemes: [
+      'Collaborative projects',
+      'Team leadership',
+      'Mediation and diplomacy',
+      'Support and service roles',
+    ],
+    relationshipThemes: [
+      'Deep partnership building',
+      'Learning compromise',
+      'Developing emotional intimacy',
+    ],
   },
   3: {
     number: 3,
@@ -59,8 +77,17 @@ export const pinnacleMeanings: Record<number, PinnacleMeaning> = {
       'Avoiding superficiality',
       'Balancing social life with work',
     ],
-    careerThemes: ['Creative arts', 'Writing and publishing', 'Public speaking', 'Entertainment and media'],
-    relationshipThemes: ['Expressive and joyful partnerships', 'Creative collaboration', 'Social connection through shared interests'],
+    careerThemes: [
+      'Creative arts',
+      'Writing and publishing',
+      'Public speaking',
+      'Entertainment and media',
+    ],
+    relationshipThemes: [
+      'Expressive and joyful partnerships',
+      'Creative collaboration',
+      'Social connection through shared interests',
+    ],
   },
   4: {
     number: 4,
@@ -77,8 +104,17 @@ export const pinnacleMeanings: Record<number, PinnacleMeaning> = {
       'Balancing work with rest',
       'Not getting stuck in routines',
     ],
-    careerThemes: ['Construction and engineering', 'Management and administration', 'Financial planning', 'System building'],
-    relationshipThemes: ['Building stable home life', 'Commitment and reliability', 'Creating traditions and routines together'],
+    careerThemes: [
+      'Construction and engineering',
+      'Management and administration',
+      'Financial planning',
+      'System building',
+    ],
+    relationshipThemes: [
+      'Building stable home life',
+      'Commitment and reliability',
+      'Creating traditions and routines together',
+    ],
   },
   5: {
     number: 5,
@@ -95,8 +131,17 @@ export const pinnacleMeanings: Record<number, PinnacleMeaning> = {
       'Managing impulsive tendencies',
       'Finding stability within change',
     ],
-    careerThemes: ['Travel and tourism', 'Sales and marketing', 'Media and communications', 'Entrepreneurial ventures'],
-    relationshipThemes: ['Freedom within partnership', 'Adventurous relationships', 'Learning commitment without confinement'],
+    careerThemes: [
+      'Travel and tourism',
+      'Sales and marketing',
+      'Media and communications',
+      'Entrepreneurial ventures',
+    ],
+    relationshipThemes: [
+      'Freedom within partnership',
+      'Adventurous relationships',
+      'Learning commitment without confinement',
+    ],
   },
   6: {
     number: 6,
@@ -113,8 +158,17 @@ export const pinnacleMeanings: Record<number, PinnacleMeaning> = {
       'Balancing giving with receiving',
       'Not becoming overly controlling',
     ],
-    careerThemes: ['Healthcare and healing', 'Teaching and counseling', 'Arts and design', 'Community service'],
-    relationshipThemes: ['Devoted partnership', 'Family building', 'Creating a beautiful and harmonious home'],
+    careerThemes: [
+      'Healthcare and healing',
+      'Teaching and counseling',
+      'Arts and design',
+      'Community service',
+    ],
+    relationshipThemes: [
+      'Devoted partnership',
+      'Family building',
+      'Creating a beautiful and harmonious home',
+    ],
   },
   7: {
     number: 7,
@@ -131,8 +185,17 @@ export const pinnacleMeanings: Record<number, PinnacleMeaning> = {
       'Not becoming overly intellectual',
       'Sharing wisdom with others',
     ],
-    careerThemes: ['Research and analysis', 'Spiritual teaching', 'Technology and science', 'Academic pursuits'],
-    relationshipThemes: ['Intellectual partnership', 'Deep, meaningful connections', 'Respecting each others need for solitude'],
+    careerThemes: [
+      'Research and analysis',
+      'Spiritual teaching',
+      'Technology and science',
+      'Academic pursuits',
+    ],
+    relationshipThemes: [
+      'Intellectual partnership',
+      'Deep, meaningful connections',
+      'Respecting each others need for solitude',
+    ],
   },
   8: {
     number: 8,
@@ -149,8 +212,17 @@ export const pinnacleMeanings: Record<number, PinnacleMeaning> = {
       'Managing power responsibly',
       'Staying grounded in success',
     ],
-    careerThemes: ['Executive leadership', 'Finance and investment', 'Business ownership', 'Legal and political roles'],
-    relationshipThemes: ['Power partnerships', 'Building wealth together', 'Learning to prioritize relationships over money'],
+    careerThemes: [
+      'Executive leadership',
+      'Finance and investment',
+      'Business ownership',
+      'Legal and political roles',
+    ],
+    relationshipThemes: [
+      'Power partnerships',
+      'Building wealth together',
+      'Learning to prioritize relationships over money',
+    ],
   },
   9: {
     number: 9,
@@ -167,8 +239,17 @@ export const pinnacleMeanings: Record<number, PinnacleMeaning> = {
       'Managing overwhelming empathy',
       'Finding personal joy in service',
     ],
-    careerThemes: ['Humanitarian work', 'Arts and entertainment', 'Teaching and mentoring', 'International relations'],
-    relationshipThemes: ['Unconditional love', 'Letting go of relationships that have run their course', 'Broader, more inclusive connections'],
+    careerThemes: [
+      'Humanitarian work',
+      'Arts and entertainment',
+      'Teaching and mentoring',
+      'International relations',
+    ],
+    relationshipThemes: [
+      'Unconditional love',
+      'Letting go of relationships that have run their course',
+      'Broader, more inclusive connections',
+    ],
   },
   11: {
     number: 11,
@@ -185,8 +266,17 @@ export const pinnacleMeanings: Record<number, PinnacleMeaning> = {
       'Avoiding spiritual bypassing',
       'Handling intense energy',
     ],
-    careerThemes: ['Spiritual leadership', 'Creative arts', 'Healing professions', 'Inspirational speaking'],
-    relationshipThemes: ['Soulmate connections', 'Spiritual partnership', 'Navigating intense emotional bonds'],
+    careerThemes: [
+      'Spiritual leadership',
+      'Creative arts',
+      'Healing professions',
+      'Inspirational speaking',
+    ],
+    relationshipThemes: [
+      'Soulmate connections',
+      'Spiritual partnership',
+      'Navigating intense emotional bonds',
+    ],
   },
   22: {
     number: 22,
@@ -203,7 +293,16 @@ export const pinnacleMeanings: Record<number, PinnacleMeaning> = {
       'Finding support for your vision',
       'Staying grounded in practicality',
     ],
-    careerThemes: ['Large-scale project leadership', 'Organizational building', 'Global initiatives', 'Visionary entrepreneurship'],
-    relationshipThemes: ['Building a legacy together', 'Partnership as co-creation', 'Supporting each others grand visions'],
+    careerThemes: [
+      'Large-scale project leadership',
+      'Organizational building',
+      'Global initiatives',
+      'Visionary entrepreneurship',
+    ],
+    relationshipThemes: [
+      'Building a legacy together',
+      'Partnership as co-creation',
+      'Supporting each others grand visions',
+    ],
   },
 };

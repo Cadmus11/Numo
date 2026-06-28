@@ -11,10 +11,7 @@
       "tsconfigPaths": true,
       "typedRoutes": true
     },
-    "plugins": [
-      "@react-native-community/datetimepicker",
-      "expo-router"
-    ],
+    "plugins": ["@react-native-community/datetimepicker", "expo-router"],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -23,9 +20,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.numo.app"
@@ -34,7 +29,7 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#0F0B1D",
-        "monochromeImage": "adaptive-icon.png"
+        "monochromeImage": "./assets/adaptive-icon.png"
       },
       "package": "com.numo.app"
     }
